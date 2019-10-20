@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "importHelpers": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./dist/",
+    "paths": {
+      "components": ["src/components"],
+      "typings": ["typings"]
+    },
+    "sourceMap": true,
+    "target": "es6"
+  }
+}
