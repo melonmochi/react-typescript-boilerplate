@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
-import { Hello } from "components";
+import { AppLayout } from "components";
 
 const App: FunctionComponent = () => {
   return (
     <div>
-      <Hello compiler="TypeScript" framework="React" />,
+      <AppLayout />,
     </div>
   );
 };

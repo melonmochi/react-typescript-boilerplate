@@ -1,5 +1,8 @@
-const path = require("path");
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+//   .BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const tsImportPluginFactory = require("ts-import-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -23,8 +26,39 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
-        loader: "awesome-typescript-loader"
+        test: /\.(ts|tsx)$/,
+        loader: "awesome-typescript-loader",
+        options: {
+          getCustomTransformers: () => ({
+            before: [
+              tsImportPluginFactory({
+                libraryName: "antd",
+                libraryDirectory: "lib",
+                style: true
+              })
+            ]
+          })
+        }
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: "style-loader" // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "less-loader", // compiles Less to CSS
+            options: {
+              // modifyVars: {
+              //   "primary-color": "#1DA57A"
+              // },
+              javascriptEnabled: true
+            }
+          }
+        ]
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {
@@ -50,6 +84,6 @@ module.exports = {
       template: path.resolve(__dirname, "src", "assets", "index.html")
       // favicon: 'public/favicon.png',
     })
-    // new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin()
   ]
 };
