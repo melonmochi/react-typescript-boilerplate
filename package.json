@@ -51,7 +51,7 @@
     "prettier": "prettier --write './src/**/*'",
     "pretty-quick": "pretty-quick",
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "jest --watch",
+    "test": "jest --watchAll",
     "test:coverage": "jest --coverage --watchAll"
   }
 }
