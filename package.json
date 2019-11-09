@@ -6,12 +6,20 @@
     "react-dom": "^16.10.2"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.22",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-jest": "^24.9.0",
     "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.9",
+    "jest": "^24.9.0",
     "less-loader": "^5.0.0",
     "lint-staged": "^10.0.0-0",
     "prettier": "^1.18.2",
@@ -19,6 +27,7 @@
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "ts-import-plugin": "^1.6.1",
+    "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.1.0",
@@ -41,6 +50,8 @@
     "tslint": "tslint -c tslint.json --fix 'src/**/*.{ts,tsx}'",
     "prettier": "prettier --write './src/**/*'",
     "pretty-quick": "pretty-quick",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "start": "webpack-dev-server --mode development --open --hot",
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage --watchAll"
   }
 }
