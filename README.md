@@ -1,8 +1,8 @@
-# Public transportation visualization tools build with React. <https://reactjs.org/>
+# Boilerplate of React application with TypeScript
 
 English | [Español](./README-es_ES.md)
 
-[![CircleCI branch](https://img.shields.io/circleci/build/github/melonmochi/react-typescript-boilerplate/master.svg?style=flat-square)](https://circleci.com/gh/melonmochi/react-typescript-boilerplate) [![Codecov](https://img.shields.io/codecov/c/github/melonmochi/react-typescript-boilerplate/master.svg?style=flat-square)](https://codecov.io/gh/melonmochi/react-typescript-boilerplate/branch/master)[![Dependencies](https://img.shields.io/david/melonmochi/react-typescript-boilerplate.svg?style=flat-square)](https://david-dm.org/melonmochi/react-typescript-boilerplate) [![DevDependencies](https://img.shields.io/david/dev/melonmochi/react-typescript-boilerplate.svg?style=flat-square)](https://david-dm.org/melonmochi/react-typescript-boilerplate?type=dev)
+[![CircleCI branch](https://img.shields.io/circleci/build/github/melonmochi/react-typescript-boilerplate/master.svg?style=flat-square)](https://circleci.com/gh/melonmochi/react-typescript-boilerplate) [![Codecov](https://img.shields.io/codecov/c/github/melonmochi/react-typescript-boilerplate/master.svg?style=flat-square)](https://codecov.io/gh/melonmochi/react-typescript-boilerplate/branch/master) [![Dependencies](https://img.shields.io/david/melonmochi/react-typescript-boilerplate.svg?style=flat-square)](https://david-dm.org/melonmochi/react-typescript-boilerplate) [![DevDependencies](https://img.shields.io/david/dev/melonmochi/react-typescript-boilerplate.svg?style=flat-square)](https://david-dm.org/melonmochi/react-typescript-boilerplate?type=dev)
 
 ## ⌨️ Development
 
