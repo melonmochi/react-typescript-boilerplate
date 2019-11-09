@@ -18,5 +18,7 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Run Tests
-          command: yarn test
+          name: Run Tests and Collect Coverage Reports
+          command: yarn test:ci
+      - store_artifacts:
+          path: coverage

@@ -52,6 +52,7 @@
     "pretty-quick": "pretty-quick",
     "start": "webpack-dev-server --mode development --open --hot",
     "test": "jest --watchAll",
-    "test:coverage": "jest --coverage --watchAll"
+    "test:ci": "jest --collectCoverage=true",
+    "test:coverage": "jest --collectCoverage --watchAll"
   }
 }
