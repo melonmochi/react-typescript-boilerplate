@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import * as React from "react";
 import { useTranslation } from "react-i18next";
 import ProLayout from "@ant-design/pro-layout";
 

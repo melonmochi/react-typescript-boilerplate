@@ -2,10 +2,11 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "esModuleInterop": true,
     "importHelpers": true,
     "jsx": "react",
-    "module": "esnext",
     "lib": ["esnext", "dom"],
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./dist/",
