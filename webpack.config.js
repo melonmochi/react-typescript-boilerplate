@@ -16,8 +16,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      components: path.resolve(__dirname, "./src/components"),
-      typings: path.resolve(__dirname, "./typings")
+      "@": path.resolve(__dirname, "./src")
     },
     // Add '.js','.jsx','.ts' and '.tsx' as resolvable extensions.
     extensions: [".js", ".jsx", ".ts", ".tsx"]
@@ -59,12 +58,6 @@ module.exports = {
             }
           }
         ]
-      },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader"
       }
     ]
   },

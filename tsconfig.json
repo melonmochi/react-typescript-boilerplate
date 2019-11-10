@@ -5,14 +5,15 @@
     "importHelpers": true,
     "jsx": "react",
     "module": "esnext",
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./dist/",
     "paths": {
-      "components": ["src/components"],
+      "@/*": ["./src/*"],
       "typings": ["typings"]
     },
     "sourceMap": true,
-    "target": "es6"
+    "target": "esnext"
   }
 }

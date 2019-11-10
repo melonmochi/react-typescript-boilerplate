@@ -1,18 +1,24 @@
 {
   "dependencies": {
-    "antd": "^3.24.2",
+    "@ant-design/pro-layout": "^4.7.0-3",
+    "antd": "^3.25.1",
+    "i18next": "^19.0.0",
+    "i18next-browser-languagedetector": "^4.0.1",
+    "i18next-xhr-backend": "^3.2.2",
     "less": "^3.10.3",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2"
+    "react-dom": "^16.10.2",
+    "react-i18next": "^11.1.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.22",
+    "@types/lodash": "^4.14.146",
     "@types/react": "^16.9.9",
     "@types/react-dom": "^16.9.2",
+    "@types/react-router-dom": "^5.1.2",
     "awesome-typescript-loader": "^5.2.1",
-    "babel-jest": "^24.9.0",
     "codecov": "^3.6.1",
     "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
@@ -25,6 +31,7 @@
     "lint-staged": "^10.0.0-0",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.0",
+    "react-router-dom": "^5.1.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "ts-import-plugin": "^1.6.1",
