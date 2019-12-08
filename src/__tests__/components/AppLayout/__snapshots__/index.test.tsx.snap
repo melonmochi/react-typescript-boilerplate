@@ -2,7 +2,6 @@
 
 exports[`NoFoundPage Snapshot 1`] = `
 <BasicLayout
-  autoHideHeader={false}
   contentWidth="Fluid"
   fixSiderbar={false}
   fixedHeader={false}
@@ -32,6 +31,7 @@ exports[`NoFoundPage Snapshot 1`] = `
     }
   }
   navTheme="dark"
+  primaryColor="daybreak"
   title="global.title"
 />
 `;
