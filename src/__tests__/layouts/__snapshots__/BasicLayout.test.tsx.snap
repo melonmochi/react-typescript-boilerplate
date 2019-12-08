@@ -2,39 +2,43 @@
 
 exports[`BasicLayout Snapshot 1`] = `
 <Fragment>
-  <BasicLayout
-    contentWidth="Fluid"
-    fixSiderbar={false}
-    fixedHeader={false}
-    iconfontUrl=""
-    layout="sidemenu"
-    location={
-      Location {
-        "assign": [Function],
-        "hash": "",
-        "host": "localhost",
-        "hostname": "localhost",
-        "href": "http://localhost/",
-        "origin": "http://localhost",
-        "pathname": "/",
-        "port": "",
-        "protocol": "http:",
-        "reload": [Function],
-        "replace": [Function],
-        "search": "",
-        "toString": [Function],
+  <Suspense
+    fallback="loading"
+  >
+    <BasicLayout
+      contentWidth="Fluid"
+      fixSiderbar={false}
+      fixedHeader={false}
+      iconfontUrl=""
+      layout="sidemenu"
+      location={
+        Location {
+          "assign": [Function],
+          "hash": "",
+          "host": "localhost",
+          "hostname": "localhost",
+          "href": "http://localhost/",
+          "origin": "http://localhost",
+          "pathname": "/",
+          "port": "",
+          "protocol": "http:",
+          "reload": [Function],
+          "replace": [Function],
+          "search": "",
+          "toString": [Function],
+        }
       }
-    }
-    logo="test-file-stub"
-    menu={
-      Object {
-        "locale": true,
+      logo="test-file-stub"
+      menu={
+        Object {
+          "locale": true,
+        }
       }
-    }
-    navTheme="dark"
-    primaryColor="daybreak"
-    title="global.title"
-  />
+      navTheme="dark"
+      primaryColor="daybreak"
+      title="React ❤️ TS"
+    />
+  </Suspense>
   <SettingDrawer
     onSettingChange={[Function]}
     settings={Object {}}
