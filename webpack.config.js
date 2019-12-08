@@ -58,6 +58,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: "file-loader"
       }
     ]
   },
@@ -73,9 +77,9 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: "React TypeScript App",
-      template: path.resolve(__dirname, "src", "assets", "index.html")
-      // favicon: 'public/favicon.png',
+      favicon: "./src/assets/favicon.png",
+      template: path.resolve(__dirname, "src", "assets", "index.html"),
+      title: "React TypeScript App"
     })
     // new BundleAnalyzerPlugin()
   ]
