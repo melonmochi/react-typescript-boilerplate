@@ -10,11 +10,23 @@ describe("BasicLayout", () => {
       expect(container).toMatchSnapshot();
     });
 
-    test("fires props actions", () => {
-      const proLayout = container.find(ProLayout);
-      const settingDrawer = container.find(SettingDrawer);
-      proLayout.props().onCollapse(true);
-      settingDrawer.props().onSettingChange({});
+    describe("fires props actions", () => {
+      describe("ProLayout", () => {
+        const proLayout = container.find(ProLayout);
+        test("onCollapse", () => {
+          proLayout.props().onCollapse(true);
+        });
+        test("footerRender", () => {
+          const footerRender = proLayout.props().footerRender;
+          footerRender && footerRender({}, null);
+        });
+      });
+      describe("SettingDrawer", () => {
+        const settingDrawer = container.find(SettingDrawer);
+        test("onSettingChange", () => {
+          settingDrawer.props().onSettingChange({});
+        });
+      });
     });
   });
 

@@ -7,8 +7,6 @@ export const reducers = (
   switch (action.type) {
     case "CHANGE_COLLAPSED":
       return ChangeCollapsed(state, action);
-    default:
-      throw new Error();
   }
 };
 

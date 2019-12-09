@@ -1,4 +1,4 @@
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
@@ -52,7 +52,7 @@ module.exports = {
             loader: "less-loader", // compiles Less to CSS
             options: {
               // modifyVars: {
-              //   "primary-color": "#1DA57A"
+              //   'primary-color': '#1DA57A'
               // },
               javascriptEnabled: true
             }
