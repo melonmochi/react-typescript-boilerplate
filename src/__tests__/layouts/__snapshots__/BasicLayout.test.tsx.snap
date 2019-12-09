@@ -39,14 +39,15 @@ exports[`BasicLayout Without context Snapshot 1`] = `
         "locale": true,
       }
     }
+    menuHeaderRender={[Function]}
     navTheme="dark"
     onCollapse={[Function]}
     primaryColor="daybreak"
-    title="React ❤️ TS"
+    rightContentRender={[Function]}
+    title="React TypeScript"
   />
   <SettingDrawer
     onSettingChange={[Function]}
-    settings={Object {}}
   />
 </Fragment>
 `;
