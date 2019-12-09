@@ -28,7 +28,7 @@ export const BasicLayout: FC = () => {
         footerRender={footerRender}
         logo={logo}
         onCollapse={handleMenuCollapse}
-        title="React ❤️ TS"
+        title="React TypeScript"
       />
       <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
     </>

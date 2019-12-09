@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { BasicLayout } from "@/layouts";
+import "./App.less";
 
 const App: FunctionComponent = () => {
   return (
