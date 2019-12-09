@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Snapshot 1`] = `
+<FooterView
+  copyright="2019 melonmochi"
+  links={
+    Array [
+      Object {
+        "blankTarget": true,
+        "href": "https://github.com/melonmochi/react-typescript-boilerplate",
+        "key": "React TypeScript Boilerplate",
+        "title": "React TypeScript Boilerplate",
+      },
+      Object {
+        "blankTarget": true,
+        "href": "https://github.com/melonmochi/react-typescript-boilerplate",
+        "key": "github",
+        "title": <Icon
+          type="github"
+        />,
+      },
+      Object {
+        "blankTarget": true,
+        "href": "https://www.paradigmadigital.com/",
+        "key": "Paradigma Digital",
+        "title": "Paradigma Digital",
+      },
+    ]
+  }
+/>
+`;

@@ -1,44 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BasicLayout Snapshot 1`] = `
+exports[`BasicLayout With Context Snapshot 1`] = `
+<Component>
+  <Component />
+</Component>
+`;
+
+exports[`BasicLayout Without context Snapshot 1`] = `
 <Fragment>
-  <Suspense
-    fallback="loading"
-  >
-    <BasicLayout
-      contentWidth="Fluid"
-      fixSiderbar={false}
-      fixedHeader={false}
-      iconfontUrl=""
-      layout="sidemenu"
-      location={
-        Location {
-          "assign": [Function],
-          "hash": "",
-          "host": "localhost",
-          "hostname": "localhost",
-          "href": "http://localhost/",
-          "origin": "http://localhost",
-          "pathname": "/",
-          "port": "",
-          "protocol": "http:",
-          "reload": [Function],
-          "replace": [Function],
-          "search": "",
-          "toString": [Function],
-        }
+  <BasicLayout
+    collapsed={false}
+    contentWidth="Fluid"
+    fixSiderbar={false}
+    fixedHeader={false}
+    footerRender={[Function]}
+    iconfontUrl=""
+    layout="sidemenu"
+    location={
+      Location {
+        "assign": [Function],
+        "hash": "",
+        "host": "localhost",
+        "hostname": "localhost",
+        "href": "http://localhost/",
+        "origin": "http://localhost",
+        "pathname": "/",
+        "port": "",
+        "protocol": "http:",
+        "reload": [Function],
+        "replace": [Function],
+        "search": "",
+        "toString": [Function],
       }
-      logo="test-file-stub"
-      menu={
-        Object {
-          "locale": true,
-        }
+    }
+    logo="test-file-stub"
+    menu={
+      Object {
+        "locale": true,
       }
-      navTheme="dark"
-      primaryColor="daybreak"
-      title="React ❤️ TS"
-    />
-  </Suspense>
+    }
+    navTheme="dark"
+    onCollapse={[Function]}
+    primaryColor="daybreak"
+    title="React ❤️ TS"
+  />
   <SettingDrawer
     onSettingChange={[Function]}
     settings={Object {}}

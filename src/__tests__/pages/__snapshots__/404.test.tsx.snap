@@ -1,21 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoFoundPage Snapshot 1`] = `
-<Result
-  extra={
-    <Button
-      block={false}
-      ghost={false}
-      htmlType="button"
-      loading={false}
-      onClick={[Function]}
-      type="primary"
-    >
-      Back Home
-    </Button>
-  }
-  status="404"
-  subTitle="Sorry, the page you visited does not exist."
-  title="404"
-/>
-`;
+exports[`NoFoundPage Snapshot 1`] = `[Function]`;

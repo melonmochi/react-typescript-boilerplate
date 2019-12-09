@@ -1,5 +1,6 @@
 import * as React from "react";
 import { shallow } from "enzyme";
+import { Button } from "antd";
 import { NoFoundPage } from "@/pages";
 
 jest.mock("react-router-dom", () => ({
@@ -9,8 +10,13 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("NoFoundPage", () => {
+  const container = shallow(<NoFoundPage />);
   test("Snapshot", () => {
-    const noFoundPage = shallow(<NoFoundPage />);
-    expect(noFoundPage).toMatchSnapshot();
+    expect(NoFoundPage).toMatchSnapshot();
+  });
+
+  test("fires props actions", () => {
+    const button = container.props().extra;
+    button.props.onClick();
   });
 });

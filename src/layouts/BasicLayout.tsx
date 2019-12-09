@@ -1,21 +1,46 @@
-import React, { useState, Suspense } from "react";
-import ProLayout, { SettingDrawer } from "@ant-design/pro-layout";
+import React, { FC, useContext, useState } from "react";
+import ProLayout, {
+  SettingDrawer,
+  BasicLayoutProps
+} from "@ant-design/pro-layout";
+import { BasicLayoutContext, BasicLayoutContextProvider } from "@/contexts";
 import logo from "../assets/logo.png";
+import Footer from "./Footer";
 
-const BasicLayout: React.FC = () => {
+const footerRender: BasicLayoutProps["footerRender"] = () => <Footer />;
+
+export const BasicLayout: FC = () => {
+  const { state, dispatch } = useContext(BasicLayoutContext);
   const [settings, setSettings] = useState({});
+  const { collapsed } = state;
+
+  const handleMenuCollapse = (payload: boolean): void => {
+    dispatch({ type: "CHANGE_COLLAPSED", payload });
+  };
 
   const onSettingChange = (config: React.SetStateAction<{}>) =>
     setSettings(config);
 
   return (
     <>
-      <Suspense fallback="loading">
-        <ProLayout logo={logo} title="React ❤️ TS" />
-      </Suspense>
+      <ProLayout
+        collapsed={collapsed}
+        footerRender={footerRender}
+        logo={logo}
+        onCollapse={handleMenuCollapse}
+        title="React ❤️ TS"
+      />
       <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
     </>
   );
 };
 
-export default BasicLayout;
+export const ConnectedBasicLayout: FC = () => {
+  return (
+    <BasicLayoutContextProvider>
+      <BasicLayout />
+    </BasicLayoutContextProvider>
+  );
+};
+
+export default ConnectedBasicLayout;
