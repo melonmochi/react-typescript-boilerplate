@@ -1,5 +1,4 @@
 import { reducers } from "@/reducers/basicLayout";
-import { BasicLayout as BasicLayoutType, BasicLayout } from "typings";
 
 describe("basicLayout reducers", () => {
   test("case CHANGE_COLLAPSED", () => {

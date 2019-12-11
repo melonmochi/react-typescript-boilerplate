@@ -9,6 +9,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "noUnusedLocals": true,
     "outDir": "./dist/",
     "paths": {
       "@/*": ["./src/*"],

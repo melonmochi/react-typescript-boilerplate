@@ -1,7 +1,7 @@
 import React from "react";
-import { Icon, Menu } from "antd";
+import { Menu } from "antd";
 import { StringObject } from "typings";
-// import styles from './Language.less';
+import "./Language.less";
 
 const Language: React.FC = () => {
   const locales = ["en-US", "es-ES", "zh-CN"];
@@ -16,9 +16,7 @@ const Language: React.FC = () => {
     "zh-CN": "🇨🇳"
   };
   return (
-    <Menu
-    //className={styles.menu}
-    >
+    <Menu className="menu">
       {locales.map(locale => (
         <Menu.Item key={locale}>
           <span role="img" aria-label={languageLabels[locale]}>

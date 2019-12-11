@@ -1,6 +1,5 @@
 import * as React from "react";
 import { shallow } from "enzyme";
-import { Button } from "antd";
 import { NoFoundPage } from "@/pages";
 
 jest.mock("react-router-dom", () => ({
