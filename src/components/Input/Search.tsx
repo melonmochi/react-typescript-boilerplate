@@ -1,8 +1,8 @@
+import React, { Component } from "react";
 import classNames from "classnames";
 import { AutoComplete, Icon, Input } from "antd";
 import { AutoCompleteProps, DataSourceItemType } from "antd/es/auto-complete";
-import React, { FC, useState } from "react";
-import styles from "./Search.less";
+import "./Search.less";
 
 export interface SearchProps {
   onPressEnter: (value: string) => void;
@@ -12,75 +12,104 @@ export interface SearchProps {
   className: string;
   placeholder: string;
   defaultActiveFirstOption: boolean;
-  dataSource: DataSourceItemType[];
+  dataSource?: DataSourceItemType[];
   defaultOpen: boolean;
   open?: boolean;
   defaultValue?: string;
 }
 
-const Search: FC<SearchProps> = props => {
-  const {
-    className,
-    defaultValue,
-    onChange: propsOnChange,
-    onSearch,
-    onVisibleChange,
-    placeholder
-  } = props;
-  const [value, setValue] = useState("");
-  const [searchMode, setSearchMode] = useState(false);
-  console.log(styles, styles.input);
-  const inputClass = classNames(styles.input, { [styles.show]: searchMode });
+interface SearchState {
+  value?: string;
+  searchMode: boolean;
+}
 
-  const enterSearchMode = () => {
+class Search extends Component<SearchProps, SearchState> {
+  static defaultProps = {
+    defaultActiveFirstOption: false,
+    onPressEnter: () => {},
+    onSearch: () => {},
+    onChange: () => {},
+    className: "",
+    placeholder: "",
+    defaultOpen: false,
+    onVisibleChange: () => {}
+  };
+  private inputRef: Input | null = null;
+
+  constructor(props: SearchProps) {
+    super(props);
+    this.state = {
+      searchMode: props.defaultOpen,
+      value: props.defaultValue
+    };
+  }
+
+  enterSearchMode = () => {
+    const { onVisibleChange } = this.props;
     onVisibleChange(true);
-    setSearchMode(true);
+    this.setState({ searchMode: true }, () => {
+      const { searchMode } = this.state;
+      if (searchMode && this.inputRef) {
+        this.inputRef.focus();
+      }
+    });
   };
 
-  const leaveSearchMode = () => {
-    setSearchMode(false);
+  leaveSearchMode = () => {
+    this.setState({
+      searchMode: false
+    });
   };
 
-  const onKeyDown = (e: React.KeyboardEvent) => {
+  onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       console.log("im entering");
     }
   };
 
-  const onChange: AutoCompleteProps["onChange"] = value => {
+  onChange: AutoCompleteProps["onChange"] = value => {
     if (typeof value === "string") {
-      setValue(value);
+      const { onSearch, onChange } = this.props;
+      this.setState({ value });
       if (onSearch) {
         onSearch(value);
       }
-      if (propsOnChange) {
-        propsOnChange(value);
+      if (onChange) {
+        onChange(value);
       }
     }
   };
 
-  return (
-    <span
-      className={classNames(className, "headerSearch")}
-      onClick={enterSearchMode}
-    >
-      <Icon type="search" key="Icon" />
-      <AutoComplete
-        className={inputClass}
-        key="Header Search AutoComplete"
-        onChange={onChange}
-        value={value}
+  render() {
+    const { className, defaultValue, placeholder } = this.props;
+    const { searchMode, value } = this.state;
+    const inputClass = classNames("input", { show: searchMode });
+    return (
+      <span
+        className={classNames(className, "headerSearch")}
+        onClick={this.enterSearchMode}
       >
-        <Input
-          defaultValue={defaultValue}
-          aria-label={placeholder}
-          onBlur={leaveSearchMode}
-          onKeyDown={onKeyDown}
-          placeholder={placeholder}
-        />
-      </AutoComplete>
-    </span>
-  );
-};
+        <Icon type="search" key="Icon" />
+        <AutoComplete
+          className={inputClass}
+          key="Header Search AutoComplete"
+          onChange={this.onChange}
+          value={value}
+        >
+          <Input
+            defaultValue={defaultValue}
+            aria-label={placeholder}
+            onBlur={this.leaveSearchMode}
+            onKeyDown={this.onKeyDown}
+            placeholder={placeholder}
+            ref={node => {
+              this.inputRef = node;
+            }}
+          />
+        </AutoComplete>
+      </span>
+    );
+  }
+}
 
 export default Search;

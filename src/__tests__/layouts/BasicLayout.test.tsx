@@ -1,6 +1,6 @@
 import * as React from "react";
 import { shallow } from "enzyme";
-import ProLayout, { SettingDrawer } from "@ant-design/pro-layout";
+import ProLayout from "@ant-design/pro-layout";
 import { BasicLayout, ConnectedBasicLayout } from "@/layouts/BasicLayout";
 
 describe("BasicLayout", () => {
@@ -19,12 +19,6 @@ describe("BasicLayout", () => {
         test("footerRender", () => {
           const footerRender = proLayout.props().footerRender;
           footerRender && footerRender({}, null);
-        });
-      });
-      describe("SettingDrawer", () => {
-        const settingDrawer = container.find(SettingDrawer);
-        test("onSettingChange", () => {
-          settingDrawer.props().onSettingChange({});
         });
       });
     });

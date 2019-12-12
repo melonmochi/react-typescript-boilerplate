@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Snapshot 1`] = `
+<span
+  className="headerSearch"
+  onClick={[Function]}
+>
+  <Icon
+    key="Icon"
+    type="search"
+  />
+  <AutoComplete
+    choiceTransitionName="zoom"
+    className="input"
+    filterOption={false}
+    key="Header Search AutoComplete"
+    onChange={[Function]}
+    optionLabelProp="children"
+    showSearch={false}
+    transitionName="slide-up"
+  >
+    <Input
+      aria-label=""
+      onBlur={[Function]}
+      onKeyDown={[Function]}
+      placeholder=""
+      type="text"
+    />
+  </AutoComplete>
+</span>
+`;

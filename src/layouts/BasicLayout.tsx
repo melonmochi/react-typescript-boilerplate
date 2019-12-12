@@ -1,6 +1,5 @@
 import React, { FC, useContext } from "react";
 import ProLayout, {
-  SettingDrawer,
   SettingDrawerProps,
   BasicLayoutProps as ProLayoutProps
 } from "@ant-design/pro-layout";
@@ -15,7 +14,6 @@ export interface BasicLayoutProps extends ProLayoutProps {
 }
 
 export const BasicLayout: FC<BasicLayoutProps> = props => {
-  const { settings } = props;
   const { state, dispatch } = useContext(BasicLayoutContext);
   const { collapsed } = state;
 
@@ -35,10 +33,6 @@ export const BasicLayout: FC<BasicLayoutProps> = props => {
     </Link>
   );
 
-  const onSettingChange: SettingDrawerProps["onSettingChange"] = settings => {
-    dispatch({ type: "CHANGE_SETTINGS", payload: settings });
-  };
-
   const rightContentRender: BasicLayoutProps["rightContentRender"] = rightProps => (
     <RightContent {...rightProps} />
   );
@@ -54,7 +48,6 @@ export const BasicLayout: FC<BasicLayoutProps> = props => {
         rightContentRender={rightContentRender}
         title="React TypeScript"
       />
-      <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
     </>
   );
 };

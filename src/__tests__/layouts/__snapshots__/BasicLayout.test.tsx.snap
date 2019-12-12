@@ -16,23 +16,6 @@ exports[`BasicLayout Without context Snapshot 1`] = `
     footerRender={[Function]}
     iconfontUrl=""
     layout="sidemenu"
-    location={
-      Location {
-        "assign": [Function],
-        "hash": "",
-        "host": "localhost",
-        "hostname": "localhost",
-        "href": "http://localhost/",
-        "origin": "http://localhost",
-        "pathname": "/",
-        "port": "",
-        "protocol": "http:",
-        "reload": [Function],
-        "replace": [Function],
-        "search": "",
-        "toString": [Function],
-      }
-    }
     logo="test-file-stub"
     menu={
       Object {
@@ -45,9 +28,6 @@ exports[`BasicLayout Without context Snapshot 1`] = `
     primaryColor="daybreak"
     rightContentRender={[Function]}
     title="React TypeScript"
-  />
-  <SettingDrawer
-    onSettingChange={[Function]}
   />
 </Fragment>
 `;

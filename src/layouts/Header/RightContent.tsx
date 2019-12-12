@@ -40,10 +40,6 @@ const RightContent: React.SFC<GlobalHeaderRightProps> = ({
         onPressEnter={value => {
           console.log("enter", value);
         }}
-        // tslint:disable-next-line:jsx-no-lambda
-        onVisibleChange={value => {
-          console.log("changeVisible", value);
-        }}
         placeholder="Search"
       />
       <Tooltip title="Help">
