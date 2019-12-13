@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RightContent Alternative props Snapshot 1`] = `
+<div
+  className="undefined  undefined"
+>
+  <Search
+    className="undefined undefined"
+    defaultActiveFirstOption={false}
+    defaultOpen={false}
+    onChange={[Function]}
+    onPressEnter={[Function]}
+    onSearch={[Function]}
+    onVisibleChange={[Function]}
+    placeholder="Search"
+  />
+  <Tooltip
+    arrowPointAtCenter={false}
+    autoAdjustOverflow={true}
+    mouseEnterDelay={0.1}
+    mouseLeaveDelay={0.1}
+    placement="top"
+    title="Help"
+    transitionName="zoom-big-fast"
+  >
+    <a
+      href="https://github.com/melonmochi/react-typescript-boilerplate"
+      target="_blank"
+    >
+      <Icon
+        type="question-circle-o"
+      />
+    </a>
+  </Tooltip>
+  <LanguageDropdown />
+</div>
+`;
+
+exports[`RightContent Default props Snapshot 1`] = `
+<div>
+  <Search
+    className="undefined undefined"
+    defaultActiveFirstOption={false}
+    defaultOpen={false}
+    onChange={[Function]}
+    onPressEnter={[Function]}
+    onSearch={[Function]}
+    onVisibleChange={[Function]}
+    placeholder="Search"
+  />
+  <Tooltip
+    arrowPointAtCenter={false}
+    autoAdjustOverflow={true}
+    mouseEnterDelay={0.1}
+    mouseLeaveDelay={0.1}
+    placement="top"
+    title="Help"
+    transitionName="zoom-big-fast"
+  >
+    <a
+      href="https://github.com/melonmochi/react-typescript-boilerplate"
+      target="_blank"
+    >
+      <Icon
+        type="question-circle-o"
+      />
+    </a>
+  </Tooltip>
+  <LanguageDropdown />
+</div>
+`;

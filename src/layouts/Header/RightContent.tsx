@@ -1,31 +1,29 @@
 import React from "react";
 import { Icon, Tooltip } from "antd";
 import { Search } from "@/components/Input";
-import LanguageDropdown from "./LanguageDropdown";
+import { LanguageDropdown } from ".";
 import { ConnectProps } from "@/models/connect";
-import "./RightContent.less";
+import styles from "./RightContent.less";
 
 export type SiderTheme = "light" | "dark";
+export type SiderLayout = "sidemenu" | "topmenu";
 export interface GlobalHeaderRightProps extends ConnectProps {
   theme?: SiderTheme;
-  layout?: "sidemenu" | "topmenu";
+  layout?: SiderLayout;
 }
 
-const RightContent: React.SFC<GlobalHeaderRightProps> = ({
-  theme = "light",
-  layout = "sidemenu"
-}) => {
-  let className = "right";
+const RightContent: React.SFC<GlobalHeaderRightProps> = props => {
+  const { theme, layout } = props;
+  let className = styles.right;
 
   if (theme === "dark" && layout === "topmenu") {
-    className = `right  dark`;
+    className = `${styles.right}  ${styles.dark}`;
   }
 
   return (
     <div className={className}>
       <Search
-        className={"action search"}
-        dataSource={[]}
+        className={`${styles.action} ${styles.search}`}
         defaultActiveFirstOption={false}
         defaultOpen={false}
         // tslint:disable-next-line:jsx-no-lambda
@@ -46,12 +44,12 @@ const RightContent: React.SFC<GlobalHeaderRightProps> = ({
         <a
           target="_blank"
           href="https://github.com/melonmochi/react-typescript-boilerplate"
-          className={"action"}
+          className={styles.action}
         >
           <Icon type="question-circle-o" />
         </a>
       </Tooltip>
-      <LanguageDropdown className={"action"} />
+      <LanguageDropdown className={styles.action} />
     </div>
   );
 };

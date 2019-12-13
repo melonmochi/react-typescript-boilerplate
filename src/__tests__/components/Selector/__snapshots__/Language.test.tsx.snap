@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Snapshot 1`] = `
+<Menu
+  className="menu"
+>
+  <MenuItem
+    key="en-US"
+  >
+    <span
+      aria-label="English"
+      role="img"
+    >
+      🇺🇸
+    </span>
+     
+    English
+  </MenuItem>
+  <MenuItem
+    key="es-ES"
+  >
+    <span
+      aria-label="Español"
+      role="img"
+    >
+      🇪🇸
+    </span>
+     
+    Español
+  </MenuItem>
+  <MenuItem
+    key="zh-CN"
+  >
+    <span
+      aria-label="简体中文"
+      role="img"
+    >
+      🇨🇳
+    </span>
+     
+    简体中文
+  </MenuItem>
+</Menu>
+`;

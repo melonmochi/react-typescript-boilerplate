@@ -16,6 +16,7 @@ export interface BasicLayoutProps extends ProLayoutProps {
 export const BasicLayout: FC<BasicLayoutProps> = props => {
   const { state, dispatch } = useContext(BasicLayoutContext);
   const { collapsed } = state;
+  const { settings } = props;
 
   const footerRender: BasicLayoutProps["footerRender"] = () => <Footer />;
 
@@ -47,6 +48,7 @@ export const BasicLayout: FC<BasicLayoutProps> = props => {
         onCollapse={handleMenuCollapse}
         rightContentRender={rightContentRender}
         title="React TypeScript"
+        {...settings}
       />
     </>
   );

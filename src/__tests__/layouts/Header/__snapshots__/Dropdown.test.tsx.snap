@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown Snapshot 1`] = `
+<Dropdown
+  mouseEnterDelay={0.15}
+  mouseLeaveDelay={0.1}
+  overlay={[Function]}
+  overlayClassName=""
+  placement="bottomLeft"
+/>
+`;

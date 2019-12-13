@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LanguageDropdown Snapshot 1`] = `
+<HeaderDropdown
+  overlay={[Function]}
+  placement="bottomRight"
+>
+  <span
+    className=""
+  >
+    <Icon
+      title="Languages"
+      type="global"
+    />
+  </span>
+</HeaderDropdown>
+`;

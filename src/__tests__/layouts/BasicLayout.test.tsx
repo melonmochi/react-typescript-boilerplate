@@ -20,6 +20,14 @@ describe("BasicLayout", () => {
           const footerRender = proLayout.props().footerRender;
           footerRender && footerRender({}, null);
         });
+        test("menuHeaderRender", () => {
+          const menuHeaderRender = proLayout.props().menuHeaderRender;
+          menuHeaderRender && menuHeaderRender({}, null);
+        });
+        test("rightContentRender", () => {
+          const rightContentRender = proLayout.props().rightContentRender;
+          rightContentRender && rightContentRender({});
+        });
       });
     });
   });

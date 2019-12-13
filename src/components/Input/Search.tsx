@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import { AutoComplete, Icon, Input } from "antd";
 import { AutoCompleteProps, DataSourceItemType } from "antd/es/auto-complete";
-import "./Search.less";
+import styles from "./Search.less";
 
 export interface SearchProps {
   onPressEnter: (value: string) => void;
@@ -55,6 +55,10 @@ class Search extends Component<SearchProps, SearchState> {
     });
   };
 
+  getRefValue = (node: Input) => {
+    this.inputRef = node;
+  };
+
   leaveSearchMode = () => {
     this.setState({
       searchMode: false
@@ -71,22 +75,18 @@ class Search extends Component<SearchProps, SearchState> {
     if (typeof value === "string") {
       const { onSearch, onChange } = this.props;
       this.setState({ value });
-      if (onSearch) {
-        onSearch(value);
-      }
-      if (onChange) {
-        onChange(value);
-      }
+      onSearch(value);
+      onChange(value);
     }
   };
 
   render() {
     const { className, defaultValue, placeholder } = this.props;
     const { searchMode, value } = this.state;
-    const inputClass = classNames("input", { show: searchMode });
+    const inputClass = classNames(styles.input, { [styles.show]: searchMode });
     return (
       <span
-        className={classNames(className, "headerSearch")}
+        className={classNames(className, styles.search)}
         onClick={this.enterSearchMode}
       >
         <Icon type="search" key="Icon" />
@@ -102,9 +102,7 @@ class Search extends Component<SearchProps, SearchState> {
             onBlur={this.leaveSearchMode}
             onKeyDown={this.onKeyDown}
             placeholder={placeholder}
-            ref={node => {
-              this.inputRef = node;
-            }}
+            ref={this.getRefValue}
           />
         </AutoComplete>
       </span>
