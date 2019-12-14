@@ -3,7 +3,17 @@ import { BasicLayout as BasicLayoutType } from "typings";
 import { basicLayoutReducers as reducers } from "@/reducers";
 
 const initialState: BasicLayoutType.State = {
-  collapsed: false
+  collapsed: false,
+  settings: {
+    colorWeak: false,
+    contentWidth: "Fluid",
+    fixSiderbar: false,
+    fixedHeader: false,
+    layout: "sidemenu",
+    menu: { locale: true },
+    navTheme: "dark",
+    title: "React TypeScript"
+  }
 };
 
 export const Context = createContext<BasicLayoutType.Interface>({

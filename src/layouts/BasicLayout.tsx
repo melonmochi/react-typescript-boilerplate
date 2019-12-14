@@ -1,7 +1,9 @@
 import React, { FC, useContext } from "react";
 import ProLayout, {
+  SettingDrawer,
   SettingDrawerProps,
-  BasicLayoutProps as ProLayoutProps
+  BasicLayoutProps,
+  MenuDataItem
 } from "@ant-design/pro-layout";
 import { BasicLayoutContext, BasicLayoutContextProvider } from "@/contexts";
 import logo from "../assets/logo.png";
@@ -9,20 +11,49 @@ import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import { RightContent } from "./Header";
 
-export interface BasicLayoutProps extends ProLayoutProps {
-  settings?: SettingDrawerProps["settings"];
-}
-
-export const BasicLayout: FC<BasicLayoutProps> = props => {
+export const BasicLayout: FC = props => {
+  const { children } = props;
   const { state, dispatch } = useContext(BasicLayoutContext);
-  const { collapsed } = state;
-  const { settings } = props;
+  const { collapsed, settings } = state;
+
+  const breadcrumbRender: BasicLayoutProps["breadcrumbRender"] = (
+    routers = []
+  ) => [
+    {
+      path: "/",
+      breadcrumbName: "Home"
+    },
+    ...routers
+  ];
 
   const footerRender: BasicLayoutProps["footerRender"] = () => <Footer />;
 
   const handleMenuCollapse = (payload: boolean): void => {
     dispatch({ type: "CHANGE_COLLAPSED", payload });
   };
+
+  const itemRender: BasicLayoutProps["itemRender"] = (
+    route,
+    params,
+    routes,
+    paths
+  ) => {
+    const first = routes.indexOf(route) === 0;
+    return first ? (
+      <Link to={paths.join("/")}>{route.breadcrumbName}</Link>
+    ) : (
+      <span>{route.breadcrumbName}</span>
+    );
+  };
+
+  const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
+    menuList.map(item => {
+      const localItem = {
+        ...item,
+        children: item.children ? menuDataRender(item.children) : []
+      };
+      return localItem as MenuDataItem;
+    });
 
   const menuHeaderRender: BasicLayoutProps["menuHeaderRender"] = (
     logoDom,
@@ -34,6 +65,19 @@ export const BasicLayout: FC<BasicLayoutProps> = props => {
     </Link>
   );
 
+  const menuItemRender: BasicLayoutProps["menuItemRender"] = (
+    menuItemProps,
+    defaultDom
+  ) => {
+    if (menuItemProps.isUrl || menuItemProps.children) {
+      return defaultDom;
+    }
+    return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+  };
+
+  const onSettingChange: SettingDrawerProps["onSettingChange"] = settings => {
+    dispatch({ type: "CHANGE_SETTINGS", payload: settings });
+  };
   const rightContentRender: BasicLayoutProps["rightContentRender"] = rightProps => (
     <RightContent {...rightProps} />
   );
@@ -41,15 +85,21 @@ export const BasicLayout: FC<BasicLayoutProps> = props => {
   return (
     <>
       <ProLayout
+        breadcrumbRender={breadcrumbRender}
         collapsed={collapsed}
         footerRender={footerRender}
+        itemRender={itemRender}
         logo={logo}
+        menuDataRender={menuDataRender}
+        menuItemRender={menuItemRender}
         menuHeaderRender={menuHeaderRender}
         onCollapse={handleMenuCollapse}
         rightContentRender={rightContentRender}
-        title="React TypeScript"
         {...settings}
-      />
+      >
+        {children}
+      </ProLayout>
+      <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
     </>
   );
 };

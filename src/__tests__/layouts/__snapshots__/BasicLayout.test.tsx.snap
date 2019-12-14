@@ -9,12 +9,15 @@ exports[`BasicLayout With Context Snapshot 1`] = `
 exports[`BasicLayout Without context Snapshot 1`] = `
 <Fragment>
   <BasicLayout
+    breadcrumbRender={[Function]}
     collapsed={false}
+    colorWeak={false}
     contentWidth="Fluid"
     fixSiderbar={false}
     fixedHeader={false}
     footerRender={[Function]}
     iconfontUrl=""
+    itemRender={[Function]}
     layout="sidemenu"
     logo="test-file-stub"
     menu={
@@ -22,12 +25,31 @@ exports[`BasicLayout Without context Snapshot 1`] = `
         "locale": true,
       }
     }
+    menuDataRender={[Function]}
     menuHeaderRender={[Function]}
+    menuItemRender={[Function]}
     navTheme="dark"
     onCollapse={[Function]}
     primaryColor="daybreak"
     rightContentRender={[Function]}
     title="React TypeScript"
+  />
+  <SettingDrawer
+    onSettingChange={[Function]}
+    settings={
+      Object {
+        "colorWeak": false,
+        "contentWidth": "Fluid",
+        "fixSiderbar": false,
+        "fixedHeader": false,
+        "layout": "sidemenu",
+        "menu": Object {
+          "locale": true,
+        },
+        "navTheme": "dark",
+        "title": "React TypeScript",
+      }
+    }
   />
 </Fragment>
 `;

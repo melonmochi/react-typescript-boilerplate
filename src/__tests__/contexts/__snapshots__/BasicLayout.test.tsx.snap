@@ -7,6 +7,18 @@ exports[`BasicLayoutContextProvider Snapshot 1`] = `
       "dispatch": [Function],
       "state": Object {
         "collapsed": false,
+        "settings": Object {
+          "colorWeak": false,
+          "contentWidth": "Fluid",
+          "fixSiderbar": false,
+          "fixedHeader": false,
+          "layout": "sidemenu",
+          "menu": Object {
+            "locale": true,
+          },
+          "navTheme": "dark",
+          "title": "React TypeScript",
+        },
       },
     }
   }

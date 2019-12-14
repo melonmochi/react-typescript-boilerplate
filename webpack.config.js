@@ -6,7 +6,7 @@ const tsImportPluginFactory = require("ts-import-plugin");
 const slash = require("slash2");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/global.tsx",
   output: {
     filename: "bundle.js",
     path: `${__dirname}/dist`
@@ -54,7 +54,7 @@ module.exports = {
                   if (
                     context.resourcePath.includes("node_modules") ||
                     context.resourcePath.includes("ant.design.pro.less") ||
-                    context.resourcePath.includes("App.less")
+                    context.resourcePath.includes("global.less")
                   ) {
                     return localName;
                   }
