@@ -1,16 +1,19 @@
 import React, { FunctionComponent } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { BasicLayout } from "@/layouts";
 
 const App: FunctionComponent = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          {/* <Redirect from="/" to="/welcome" /> */}
-          <Route path="/:menu?" component={BasicLayout} />
-        </Switch>
-      </div>
+      <Switch>
+        <Redirect exact from="/" to="/welcome" />
+        <Route path=":menu?/:submenu?" component={BasicLayout} />
+      </Switch>
     </Router>
   );
 };

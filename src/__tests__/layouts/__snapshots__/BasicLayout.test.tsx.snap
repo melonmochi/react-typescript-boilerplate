@@ -25,13 +25,38 @@ exports[`BasicLayout Without context Snapshot 1`] = `
         "locale": true,
       }
     }
-    menuDataRender={[Function]}
     menuHeaderRender={[Function]}
     menuItemRender={[Function]}
     navTheme="dark"
     onCollapse={[Function]}
     primaryColor="daybreak"
     rightContentRender={[Function]}
+    route={
+      Object {
+        "path": "/",
+        "routes": Array [
+          Object {
+            "component": <Welcome />,
+            "icon": "smile",
+            "name": "Welcome",
+            "path": "/welcome",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "component": <NoFoundPage />,
+                "icon": "warning",
+                "name": "404",
+                "path": "/global/404",
+              },
+            ],
+            "icon": "global",
+            "name": "Global",
+            "path": "/global",
+          },
+        ],
+      }
+    }
     title="React TypeScript"
   />
   <SettingDrawer

@@ -13,7 +13,7 @@ interface RouterTypes<T extends Object = {}, P = {}> extends BasicRouteProps {
   route?: RouteType & T;
 }
 
-interface Route extends MenuDataItem {
+export interface Route extends MenuDataItem {
   routes?: Route[];
 }
 

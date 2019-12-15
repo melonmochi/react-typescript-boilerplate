@@ -2,35 +2,17 @@ import React, { FC, useContext } from "react";
 import ProLayout, {
   SettingDrawer,
   SettingDrawerProps,
-  BasicLayoutProps,
-  MenuDataItem
+  BasicLayoutProps
 } from "@ant-design/pro-layout";
-import { BasicLayoutContext, BasicLayoutContextProvider } from "@/contexts";
 import logo from "../assets/logo.png";
-import Footer from "./Footer";
-import { Link } from "react-router-dom";
+import { BasicLayoutContext, BasicLayoutContextProvider } from "@/contexts";
+import { Footer } from ".";
+import { Link, RouteProps } from "react-router-dom";
 import { RightContent } from "./Header";
-import Welcome from "@/pages/Welcome";
-
-export const menuData = [
-  {
-    path: "/dashboard",
-    name: "dashboard",
-    icon: "dashboard",
-    children: [
-      {
-        path: "/dashboard/analysis",
-        name: "analysis",
-        icon: "dashboard",
-        exact: true,
-        component: Welcome
-      }
-    ]
-  }
-];
+import { mapComponent } from "./utils";
+import { route } from "@/Routes";
 
 export const BasicLayout: FC = props => {
-  const { children } = props;
   const { state, dispatch } = useContext(BasicLayoutContext);
   const { collapsed, settings } = state;
 
@@ -63,15 +45,6 @@ export const BasicLayout: FC = props => {
       <span>{route.breadcrumbName}</span>
     );
   };
-
-  const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
-    menuList.map(item => {
-      const localItem = {
-        ...item,
-        children: item.children ? menuDataRender(item.children) : []
-      };
-      return localItem as MenuDataItem;
-    });
 
   const menuHeaderRender: BasicLayoutProps["menuHeaderRender"] = (
     logoDom,
@@ -108,24 +81,26 @@ export const BasicLayout: FC = props => {
         footerRender={footerRender}
         itemRender={itemRender}
         logo={logo}
-        menuDataRender={menuDataRender}
         menuItemRender={menuItemRender}
         menuHeaderRender={menuHeaderRender}
         onCollapse={handleMenuCollapse}
         rightContentRender={rightContentRender}
+        route={route}
         {...settings}
       >
-        {children}
+        {props.children}
       </ProLayout>
       <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
     </>
   );
 };
 
-export const ConnectedBasicLayout: FC = () => {
+export const ConnectedBasicLayout: FC = (props: RouteProps) => {
   return (
     <BasicLayoutContextProvider>
-      <BasicLayout />
+      <BasicLayout {...props}>
+        {props.location && mapComponent(props.location.pathname, route.routes)}
+      </BasicLayout>
     </BasicLayoutContextProvider>
   );
 };
