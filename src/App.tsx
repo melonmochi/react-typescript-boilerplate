@@ -8,11 +8,7 @@ const App: FunctionComponent = () => {
       <div>
         <Switch>
           {/* <Redirect from="/" to="/welcome" /> */}
-          <Route
-            path="/"
-            component={BasicLayout}
-            routes={[{ name: "welcome", icon: "smile" }]}
-          />
+          <Route path="/:menu?" component={BasicLayout} />
         </Switch>
       </div>
     </Router>

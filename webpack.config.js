@@ -9,7 +9,8 @@ module.exports = {
   entry: "./src/global.tsx",
   output: {
     filename: "bundle.js",
-    path: `${__dirname}/dist`
+    path: `${__dirname}/dist`,
+    publicPath: "/"
   },
 
   // Enable sourcemaps for debugging webpack's output.
@@ -93,7 +94,9 @@ module.exports = {
       }
     ]
   },
-
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       favicon: "./src/assets/favicon.png",

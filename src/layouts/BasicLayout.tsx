@@ -10,6 +10,24 @@ import logo from "../assets/logo.png";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
 import { RightContent } from "./Header";
+import Welcome from "@/pages/Welcome";
+
+export const menuData = [
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    icon: "dashboard",
+    children: [
+      {
+        path: "/dashboard/analysis",
+        name: "analysis",
+        icon: "dashboard",
+        exact: true,
+        component: Welcome
+      }
+    ]
+  }
+];
 
 export const BasicLayout: FC = props => {
   const { children } = props;
