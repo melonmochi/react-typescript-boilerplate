@@ -60,8 +60,8 @@
     "prettier": "prettier --write './src/**/*'",
     "pretty-quick": "pretty-quick",
     "start": "webpack-dev-server --mode development --open --hot",
-    "test": "jest --watchAll --updateSnapshot",
-    "test:ci": "jest --coverage --updateSnapshot && ./node_modules/.bin/codecov",
-    "test:coverage": "jest --coverage --watchAll --updateSnapshot"
+    "test": "jest --watchAll --updateSnapshot --env=jsdom",
+    "test:ci": "jest --coverage --updateSnapshot && ./node_modules/.bin/codecov --env=jsdom",
+    "test:coverage": "jest --coverage --watchAll --updateSnapshot --env=jsdom"
   }
 }
