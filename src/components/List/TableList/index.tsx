@@ -1,27 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Table, Form, Switch, Radio, message } from "antd";
-import { department } from "@/__mocks__/departments.d";
-import { SortOrder } from "antd/lib/table";
+import React, { FC, useState, useEffect, useRef } from "react";
+import { Table, Form, Switch, Radio, message, Input, Button, Icon } from "antd";
+import Highlighter from "react-highlight-words";
 import { RadioChangeEvent } from "antd/lib/radio";
+import { SortOrder } from "antd/lib/table";
+import { department } from "@/__mocks__/departments.d";
 import { getDepartments } from "@/services/Api/departments";
-
-const columns = [
-  {
-    title: "Department No",
-    dataIndex: "deptNo",
-    key: "deptNo",
-    sorter: (a: department, b: department) => a.deptNo.localeCompare(b.deptNo),
-    sortDirections: ["ascend", "descend"] as SortOrder[],
-    width: 150
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    sorter: (a: department, b: department) => a.name.localeCompare(b.name),
-    sortDirections: ["ascend", "descend"] as SortOrder[]
-  }
-];
 
 const expandedRowRender = (record: { name: React.ReactNode }) => (
   <p>{`Here is ${record.name}'s description`}</p>
@@ -32,7 +15,7 @@ const footer = () => "Here is footer";
 const scroll = { y: 240 };
 const pagination = { position: "bottom" };
 
-const TableList: React.FC = () => {
+const TableList: FC = () => {
   const { data: dataSource, isLoading, error } = useGetDepartmentsApi();
   const [state, setState] = useState<any>({
     bordered: false,
@@ -50,7 +33,7 @@ const TableList: React.FC = () => {
     tableLayout: undefined
   });
 
-  const handleToggle = (prop: any) => (enable: any) => {
+  const handleToggle = (prop: any) => (enable: boolean) => {
     setState({ ...state, [prop]: enable });
   };
 
@@ -62,38 +45,38 @@ const TableList: React.FC = () => {
     setState({ ...state, tableLayout: e.target.value });
   };
 
-  const handleExpandChange = (enable: any) => {
+  const handleExpandChange = (enable: boolean) => {
     setState({
       ...state,
       expandedRowRender: enable ? expandedRowRender : undefined
     });
   };
 
-  const handleEllipsisChange = (enable: any) => {
+  const handleEllipsisChange = (enable: boolean) => {
     setState({ ...state, ellipsis: enable });
   };
 
-  const handleTitleChange = (enable: any) => {
+  const handleTitleChange = (enable: boolean) => {
     setState({ ...state, title: enable ? title : undefined });
   };
 
-  const handleHeaderChange = (enable: any) => {
+  const handleHeaderChange = (enable: boolean) => {
     setState({ ...state, showHeader: enable ? showHeader : false });
   };
 
-  const handleFooterChange = (enable: any) => {
+  const handleFooterChange = (enable: boolean) => {
     setState({ ...state, footer: enable ? footer : undefined });
   };
 
-  const handleRowSelectionChange = (enable: any) => {
+  const handleRowSelectionChange = (enable: boolean) => {
     setState({ ...state, rowSelection: enable ? {} : undefined });
   };
 
-  const handleScollChange = (enable: any) => {
+  const handleScollChange = (enable: boolean) => {
     setState({ ...state, scroll: enable ? scroll : undefined });
   };
 
-  const handleDataChange = (hasData: any) => {
+  const handleDataChange = (hasData: boolean) => {
     setState({ ...state, hasData });
   };
 
@@ -104,6 +87,108 @@ const TableList: React.FC = () => {
       pagination: value === "none" ? false : { position: value }
     });
   };
+
+  const handleSearch = (
+    selectedKeys: string[],
+    confirm: () => void,
+    dataIndex: string
+  ) => {
+    confirm();
+    setState({
+      ...state,
+      searchText: selectedKeys[0],
+      searchedColumn: dataIndex
+    });
+  };
+
+  const handleReset = (clearFilters: () => void) => {
+    clearFilters();
+    setState({ ...state, searchText: "" });
+  };
+
+  const searchInputRef = {
+    deptNo: useRef(null),
+    name: useRef(null)
+  };
+
+  const getColumnSearchProps = (
+    dataIndex: string,
+    searchInputRef: React.MutableRefObject<any>
+  ) => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters
+    }: {
+      setSelectedKeys: (keys: string[]) => void;
+      selectedKeys: string[];
+      confirm: () => void;
+      clearFilters: () => void;
+    }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={searchInputRef}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={e =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{ width: 188, marginBottom: 8, display: "block" }}
+        />
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          icon="search"
+          size="small"
+          style={{ width: 90, marginRight: 8 }}
+        >
+          Search
+        </Button>
+        <Button
+          onClick={() => handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Reset
+        </Button>
+      </div>
+    ),
+    filterIcon: (filtered: boolean) => (
+      <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
+    ),
+    onFilter: (
+      value: { toLowerCase: () => void },
+      record: {
+        [x: string]: {
+          toString: () => {
+            toLowerCase: () => { includes: (arg0: any) => void };
+          };
+        };
+      }
+    ) =>
+      record[dataIndex]
+        .toString()
+        .toLowerCase()
+        .includes(value.toLowerCase()),
+    onFilterDropdownVisibleChange: (visible: boolean) => {
+      if (visible) {
+        setTimeout(() => searchInputRef.current.select());
+      }
+    },
+    render: (text: { toString: () => string }) =>
+      state.searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+          searchWords={[state.searchText]}
+          autoEscape
+          textToHighlight={text.toString()}
+        />
+      ) : (
+        text
+      )
+  });
 
   useEffect(() => {
     setState({ ...state, loading: isLoading });
@@ -184,6 +269,27 @@ const TableList: React.FC = () => {
       </Form.Item>
     </Form>
   );
+
+  const columns = [
+    {
+      title: "Department No",
+      dataIndex: "deptNo",
+      key: "deptNo",
+      sorter: (a: department, b: department) =>
+        a.deptNo.localeCompare(b.deptNo),
+      sortDirections: ["ascend", "descend"] as SortOrder[],
+      width: "30%",
+      ...getColumnSearchProps("deptNo", searchInputRef.deptNo)
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      sorter: (a: department, b: department) => a.name.localeCompare(b.name),
+      sortDirections: ["ascend", "descend"] as SortOrder[],
+      ...getColumnSearchProps("name", searchInputRef.name)
+    }
+  ];
 
   return (
     <>
