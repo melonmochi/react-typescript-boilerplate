@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Table, Form, Switch, Radio } from "antd";
+import React, { FC, useState, useEffect, useRef } from "react";
+import { Button, Table, Form, Switch, Radio, Input } from "antd";
+// import Highlighter from "react-highlight-words";
 import { department } from "@/__mocks__/departments.d";
 import { SortOrder } from "antd/lib/table";
 import { RadioChangeEvent } from "antd/lib/radio";
 import { getDepartments } from "@/services/Api/departments";
 
-const columns = [
-  {
-    title: "Department No",
-    dataIndex: "deptNo",
-    key: "deptNo",
-    sorter: (a: department, b: department) => a.deptNo.localeCompare(b.deptNo),
-    sortDirections: ["ascend", "descend"] as SortOrder[],
-    width: 150
-  },
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    sorter: (a: department, b: department) => a.name.localeCompare(b.name),
-    sortDirections: ["ascend", "descend"] as SortOrder[]
-  }
-];
-
 const expandedRowRender = (record: { deptNo: React.ReactNode }) => {
-  console.log(record);
   return <p>{`Here is ${record.deptNo}'s description`}</p>;
 };
 const title = () => "Here is title";
@@ -33,22 +15,24 @@ const footer = () => "Here is footer";
 const scroll = { y: 240 };
 const pagination = { position: "bottom" };
 
-const TableList: React.FC = () => {
+const TableList: FC = () => {
   const [dataSource, setDataSource] = useState<department[]>([]);
   const [state, setState] = useState<any>({
     bordered: false,
     ellipsis: false,
+    expandedRowRender,
+    footer,
+    hasData: true,
     loading: false,
     pagination,
-    size: "default",
-    expandedRowRender,
-    title: undefined,
-    showHeader,
-    footer,
     rowSelection: {},
     scroll: undefined,
-    hasData: true,
-    tableLayout: undefined
+    searchedColumn: "",
+    searchText: "",
+    showHeader,
+    size: "default",
+    tableLayout: undefined,
+    title: undefined
   });
 
   const handleToggle = (prop: any) => (enable: any) => {
@@ -104,6 +88,24 @@ const TableList: React.FC = () => {
       ...state,
       pagination: value === "none" ? false : { position: value }
     });
+  };
+
+  const handleSearch = (
+    selectedKeys: string[],
+    confirm: () => void,
+    dataIndex: string
+  ) => {
+    confirm();
+    setState({
+      ...state,
+      searchText: selectedKeys[0],
+      searchedColumn: dataIndex
+    });
+  };
+
+  const handleReset = (clearFilters: () => void) => {
+    clearFilters();
+    setState({ ...state, searchText: "" });
   };
 
   useEffect(() => {
@@ -190,6 +192,144 @@ const TableList: React.FC = () => {
       </Form.Item>
     </Form>
   );
+
+  const searchInputRef = useRef(null);
+
+  // const getColumnSearchProps = (dataIndex: string) => ({
+  //   filterDropdown: ({
+  //     setSelectedKeys,
+  //     selectedKeys,
+  //     confirm,
+  //     clearFilters
+  //   }: {
+  //     setSelectedKeys: (keys: string[]) => void;
+  //     selectedKeys: string[];
+  //     confirm: () => void;
+  //     clearFilters: () => void;
+  //   }) => (
+  //     <div style={{ padding: 8 }}>
+  //       <Input
+  //         ref={searchInputRef}
+  //         placeholder={`Search ${dataIndex}`}
+  //         value={selectedKeys[0]}
+  //         onChange={e =>
+  //           setSelectedKeys(e.target.value ? [e.target.value] : [])
+  //         }
+  //         onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+  //         style={{ width: 188, marginBottom: 8, display: "block" }}
+  //       />
+  //       <Button
+  //         type="primary"
+  //         onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+  //         icon="search"
+  //         size="small"
+  //         style={{ width: 90, marginRight: 8 }}
+  //       >
+  //         Search
+  //       </Button>
+  //       <Button
+  //         onClick={() => handleReset(clearFilters)}
+  //         size="small"
+  //         style={{ width: 90 }}
+  //       >
+  //         Reset
+  //       </Button>
+  //     </div>
+  //   ),
+  //   filterIcon: (filtered: boolean) => (
+  //     <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
+  //   ),
+  //   onFilter: (
+  //     value: { toLowerCase: () => void },
+  //     record: {
+  //       [x: string]: {
+  //         toString: () => {
+  //           toLowerCase: () => { includes: (arg0: any) => void };
+  //         };
+  //       };
+  //     }
+  //   ) =>
+  //     record[dataIndex]
+  //       .toString()
+  //       .toLowerCase()
+  //       .includes(value.toLowerCase()),
+  //   onFilterDropdownVisibleChange: (visible: boolean) => {
+  //     if (visible) {
+  //       setTimeout(() => searchInputRef.current.select());
+  //     }
+  //   },
+  //   render: (text: { toString: () => string }) =>
+  //     state.searchedColumn === dataIndex ? (
+  //       <Highlighter
+  //         highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+  //         searchWords={[state.searchText]}
+  //         autoEscape
+  //         textToHighlight={text.toString()}
+  //       />
+  //     ) : (
+  //       text
+  //     )
+  // });
+
+  const columns = [
+    {
+      title: "Department No",
+      dataIndex: "deptNo",
+      key: "deptNo",
+      sorter: (a: department, b: department) =>
+        a.deptNo.localeCompare(b.deptNo),
+      sortDirections: ["ascend", "descend"] as SortOrder[],
+      width: "20%",
+      filterDropdown: ({
+        setSelectedKeys,
+        selectedKeys,
+        confirm,
+        clearFilters
+      }: {
+        setSelectedKeys: (keys: string[]) => void;
+        selectedKeys: string[];
+        confirm: () => void;
+        clearFilters: () => void;
+      }) => (
+        <div style={{ padding: 8 }}>
+          <Input
+            ref={searchInputRef}
+            value={selectedKeys[0]}
+            onChange={e =>
+              setSelectedKeys(e.target.value ? [e.target.value] : [])
+            }
+            onPressEnter={() => handleSearch(selectedKeys, confirm, "deptNo")}
+            style={{ width: 188, marginBottom: 8, display: "block" }}
+          />
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, "deptNo")}
+            icon="search"
+            size="small"
+            style={{ width: 90, marginRight: 8 }}
+          >
+            Search
+          </Button>
+          <Button
+            onClick={() => handleReset(clearFilters)}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Reset
+          </Button>
+        </div>
+      )
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      sorter: (a: department, b: department) => a.name.localeCompare(b.name),
+      sortDirections: ["ascend", "descend"] as SortOrder[]
+    }
+  ];
+
+  console.log(columns);
 
   return (
     <>

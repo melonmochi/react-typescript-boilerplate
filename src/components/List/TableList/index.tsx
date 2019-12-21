@@ -110,7 +110,6 @@ const TableList: React.FC = () => {
   }, [isLoading]);
 
   useEffect(() => {
-    console.log(error);
     error && message.info(error);
   }, [error]);
 
