@@ -2,7 +2,7 @@ import React from "react";
 import { Icon, Tooltip } from "antd";
 import { Search } from "@/components/Input";
 import { LanguageDropdown } from ".";
-import { ConnectProps } from "@/models/connect";
+import { ConnectProps } from "typings";
 import styles from "./RightContent.less";
 
 export type SiderTheme = "light" | "dark";

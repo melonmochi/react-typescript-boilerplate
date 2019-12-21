@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Form, Switch, Radio, message } from "antd";
+import { Table, Form, Switch, Radio } from "antd";
 import { department } from "@/__mocks__/departments.d";
 import { SortOrder } from "antd/lib/table";
 import { RadioChangeEvent } from "antd/lib/radio";
@@ -23,9 +23,10 @@ const columns = [
   }
 ];
 
-const expandedRowRender = (record: { name: React.ReactNode }) => (
-  <p>{`Here is ${record.name}'s description`}</p>
-);
+const expandedRowRender = (record: { deptNo: React.ReactNode }) => {
+  console.log(record);
+  return <p>{`Here is ${record.deptNo}'s description`}</p>;
+};
 const title = () => "Here is title";
 const showHeader = true;
 const footer = () => "Here is footer";
@@ -33,7 +34,7 @@ const scroll = { y: 240 };
 const pagination = { position: "bottom" };
 
 const TableList: React.FC = () => {
-  const { data: dataSource, isLoading, error } = useGetDepartmentsApi();
+  const [dataSource, setDataSource] = useState<department[]>([]);
   const [state, setState] = useState<any>({
     bordered: false,
     ellipsis: false,
@@ -106,13 +107,17 @@ const TableList: React.FC = () => {
   };
 
   useEffect(() => {
-    setState({ ...state, loading: isLoading });
-  }, [isLoading]);
-
-  useEffect(() => {
-    console.log(error);
-    error && message.info(error);
-  }, [error]);
+    const fetchData = async () => {
+      const result = await getDepartments();
+      const data = result.data.map((department: any) => ({
+        ...department,
+        deptNo: department.dept_no,
+        key: department.dept_no
+      }));
+      setDataSource(data);
+    };
+    fetchData();
+  }, []);
 
   const TableListHeader = (
     <Form
@@ -199,31 +204,3 @@ const TableList: React.FC = () => {
 };
 
 export default TableList;
-
-const useGetDepartmentsApi = () => {
-  const [data, setData] = useState<department[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const result = await getDepartments();
-      const data = result.data.map((department: any) => ({
-        ...department,
-        deptNo: department.dept_no,
-        key: department.dept_no
-      }));
-      setData(data);
-    } catch (error) {
-      setError(JSON.parse(JSON.stringify(error)).message);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return { data, isLoading, error };
-};

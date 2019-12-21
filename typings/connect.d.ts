@@ -4,7 +4,6 @@ import {
   match
 } from "react-router-dom";
 import { MenuDataItem } from "@ant-design/pro-layout";
-import { Action } from "typings";
 
 type IncludeRoute = "component" | "exact" | "path";
 type RouteType = Pick<RouteProps, IncludeRoute>;
@@ -20,6 +19,4 @@ export interface Route extends MenuDataItem {
 /**
  * @type T: Params matched in dynamic routing
  */
-export interface ConnectProps<T = {}> extends Partial<RouterTypes<Route, T>> {
-  dispatch?<K = any>(action: Action): K;
-}
+export interface ConnectProps<T = {}> extends Partial<RouterTypes<Route, T>> {}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route } from "@/models/connect";
+import { Route } from "typings";
 import { NoFoundPage, Welcome, TableListPage } from "@/pages";
 
 export const route: Route = {

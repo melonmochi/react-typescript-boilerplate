@@ -1,4 +1,4 @@
-import { Route } from "@/models/connect";
+import { Route } from "typings";
 
 const parsePath = (pathname: string) => {
   const pathArr = pathname.split("/").splice(1);
