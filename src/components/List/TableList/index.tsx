@@ -1,10 +1,26 @@
-import React, { FC, useState, useEffect, useRef } from "react";
-import { Table, Form, Switch, Radio, message, Input, Button, Icon } from "antd";
+import React, { FC, useState, useEffect, useRef, useContext } from "react";
+import {
+  Table,
+  Form,
+  Switch,
+  Radio,
+  message,
+  Input,
+  Button,
+  Icon,
+  Popconfirm
+} from "antd";
 import Highlighter from "react-highlight-words";
 import { RadioChangeEvent } from "antd/lib/radio";
-import { SortOrder } from "antd/lib/table";
+import {
+  SortOrder,
+  PaginationConfig,
+  TableSize,
+  TableProps
+} from "antd/lib/table";
 import { department } from "@/__mocks__/departments.d";
 import { getDepartments } from "@/services/Api/departments";
+import { EditableCell } from "./EditableCell";
 
 const expandedRowRender = (record: { name: React.ReactNode }) => (
   <p>{`Here is ${record.name}'s description`}</p>
@@ -13,24 +29,53 @@ const title = () => "Here is title";
 const showHeader = true;
 const footer = () => "Here is footer";
 const scroll = { y: 240 };
-const pagination = { position: "bottom" };
+const pagination = { position: "bottom" } as PaginationConfig;
+
+export const EditableContext = React.createContext<any>({});
+
+interface TableListState {
+  bordered: boolean;
+  editingKey: React.ReactText;
+  ellipsis: boolean;
+  expandedRowRender: (record: { name: React.ReactNode }) => JSX.Element;
+  footer: () => string;
+  hasData: boolean;
+  loading: boolean;
+  pagination: PaginationConfig | false;
+  rowSelection: {};
+  scroll?: {};
+  searchedColumn: string;
+  searchText: string;
+  showHeader: boolean;
+  size: TableSize;
+  tableLayout: TableProps<any>["tableLayout"];
+  title?: () => string;
+}
 
 const TableList: FC = () => {
-  const { data: dataSource, isLoading, error } = useGetDepartmentsApi();
-  const [state, setState] = useState<any>({
+  const {
+    data: dataSource,
+    isLoading,
+    error,
+    setData: setDataSource
+  } = useGetDepartmentsApi();
+  const [state, setState] = useState<TableListState>({
     bordered: false,
+    editingKey: "",
     ellipsis: false,
+    expandedRowRender,
+    footer,
+    hasData: true,
     loading: false,
     pagination,
-    size: "default",
-    expandedRowRender,
-    title: undefined,
-    showHeader,
-    footer,
     rowSelection: {},
     scroll: undefined,
-    hasData: true,
-    tableLayout: undefined
+    searchedColumn: "",
+    searchText: "",
+    showHeader,
+    size: "default",
+    tableLayout: undefined,
+    title: undefined
   });
 
   const handleToggle = (prop: any) => (enable: boolean) => {
@@ -158,16 +203,7 @@ const TableList: FC = () => {
     filterIcon: (filtered: boolean) => (
       <Icon type="search" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
-    onFilter: (
-      value: { toLowerCase: () => void },
-      record: {
-        [x: string]: {
-          toString: () => {
-            toLowerCase: () => { includes: (arg0: any) => void };
-          };
-        };
-      }
-    ) =>
+    onFilter: (value: { toLowerCase: () => void }, record: any) =>
       record[dataIndex]
         .toString()
         .toLowerCase()
@@ -189,6 +225,38 @@ const TableList: FC = () => {
         text
       )
   });
+
+  const isEditing = (record: department) => record.key === state.editingKey;
+
+  const cancel = () => {
+    setState({ ...state, editingKey: "" });
+  };
+
+  const save = (form: any, key: React.ReactText) => {
+    form.validateFields((error: any, row: department) => {
+      if (error) {
+        return;
+      }
+      const newData = [...dataSource];
+      const index = newData.findIndex(item => key === item.key);
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, {
+          ...item,
+          ...row
+        });
+        setDataSource(newData);
+        setState({ ...state, editingKey: "" });
+      } else {
+        newData.push(row);
+        setState({ ...state, editingKey: "" });
+      }
+    });
+  };
+
+  const edit = (key: React.ReactText) => {
+    setState({ ...state, editingKey: key });
+  };
 
   useEffect(() => {
     setState({ ...state, loading: isLoading });
@@ -270,6 +338,8 @@ const TableList: FC = () => {
     </Form>
   );
 
+  const form = useContext(EditableContext);
+
   const columns = [
     {
       title: "Department No",
@@ -279,6 +349,7 @@ const TableList: FC = () => {
         a.deptNo.localeCompare(b.deptNo),
       sortDirections: ["ascend", "descend"] as SortOrder[],
       width: "30%",
+      editable: true,
       ...getColumnSearchProps("deptNo", searchInputRef.deptNo)
     },
     {
@@ -287,23 +358,90 @@ const TableList: FC = () => {
       key: "name",
       sorter: (a: department, b: department) => a.name.localeCompare(b.name),
       sortDirections: ["ascend", "descend"] as SortOrder[],
+      editable: true,
       ...getColumnSearchProps("name", searchInputRef.name)
+    },
+    {
+      title: "Operation",
+      dataIndex: "operation",
+      editable: false,
+      render: (text: string, record: department) => {
+        const { editingKey } = state;
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <a
+              onClick={() => save(form, record.key)}
+              style={{ marginRight: 8 }}
+            >
+              Save
+            </a>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>Cancel</a>
+            </Popconfirm>
+          </span>
+        ) : (
+          <Button
+            disabled={editingKey !== ""}
+            type="link"
+            onClick={() => edit(record.key)}
+          >
+            Edit
+          </Button>
+        );
+      }
     }
   ];
+
+  const columnProps = columns.map(col => {
+    if (!col.editable) {
+      return col;
+    }
+    return {
+      ...col,
+      onCell: (record: department) => ({
+        record,
+        inputType: "text",
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record)
+      })
+    };
+  });
+
+  const components = {
+    body: {
+      cell: EditableCell
+    }
+  };
 
   return (
     <>
       {TableListHeader}
       <Table
         {...state}
-        columns={columns}
+        columns={columnProps}
+        components={components}
         dataSource={state.hasData ? dataSource : null}
       />
     </>
   );
 };
 
-export default TableList;
+interface ConnectedTableListProps {
+  form: any;
+}
+
+export const ConnectedTableList: FC<ConnectedTableListProps> = props => {
+  return (
+    <EditableContext.Provider value={props.form}>
+      <TableList />
+    </EditableContext.Provider>
+  );
+};
+
+const EditableTableList = Form.create()(ConnectedTableList);
+export default EditableTableList;
 
 const useGetDepartmentsApi = () => {
   const [data, setData] = useState<department[]>([]);
@@ -330,5 +468,5 @@ const useGetDepartmentsApi = () => {
     fetchData();
   }, []);
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, setData };
 };
