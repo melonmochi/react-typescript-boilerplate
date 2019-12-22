@@ -1,31 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer Snapshot 1`] = `
-<FooterView
-  copyright="2019 melonmochi"
-  links={
-    Array [
+<Fragment>
+  <FooterView
+    copyright="2019 melonmochi"
+    links={
+      Array [
+        Object {
+          "blankTarget": true,
+          "href": "https://github.com/melonmochi/react-typescript-boilerplate",
+          "key": "React TypeScript Boilerplate",
+          "title": "React TypeScript Boilerplate",
+        },
+        Object {
+          "blankTarget": true,
+          "href": "https://github.com/melonmochi/react-typescript-boilerplate",
+          "key": "github",
+          "title": <Icon
+            type="github"
+          />,
+        },
+        Object {
+          "blankTarget": true,
+          "href": "https://www.paradigmadigital.com/",
+          "key": "Paradigma Digital",
+          "title": "Paradigma Digital",
+        },
+      ]
+    }
+  />
+  <div
+    style={
       Object {
-        "blankTarget": true,
-        "href": "https://github.com/melonmochi/react-typescript-boilerplate",
-        "key": "React TypeScript Boilerplate",
-        "title": "React TypeScript Boilerplate",
-      },
-      Object {
-        "blankTarget": true,
-        "href": "https://github.com/melonmochi/react-typescript-boilerplate",
-        "key": "github",
-        "title": <Icon
-          type="github"
-        />,
-      },
-      Object {
-        "blankTarget": true,
-        "href": "https://www.paradigmadigital.com/",
-        "key": "Paradigma Digital",
-        "title": "Paradigma Digital",
-      },
-    ]
-  }
-/>
+        "padding": "0px 24px 24px",
+        "textAlign": "center",
+      }
+    }
+  >
+    <a
+      href="https://www.netlify.com"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <img
+        alt="netlify logo"
+        src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
+        width="82px"
+      />
+    </a>
+  </div>
+</Fragment>
 `;
