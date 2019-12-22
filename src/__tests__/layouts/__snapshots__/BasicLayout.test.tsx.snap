@@ -62,6 +62,12 @@ exports[`BasicLayout Without context Snapshot 1`] = `
                 "name": "Table List",
                 "path": "/list/table-list",
               },
+              Object {
+                "component": <Unknown />,
+                "icon": "cloud-server",
+                "name": "Big Data Table List",
+                "path": "/list/big-data-table-list",
+              },
             ],
             "icon": "unordered-list",
             "name": "List",

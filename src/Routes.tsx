@@ -1,6 +1,11 @@
 import * as React from "react";
 import { Route } from "typings";
-import { NoFoundPage, Welcome, TableListPage } from "@/pages";
+import {
+  NoFoundPage,
+  Welcome,
+  TableListPage,
+  BigDataTableListPage
+} from "@/pages";
 
 export const route: Route = {
   path: "/",
@@ -34,6 +39,12 @@ export const route: Route = {
           icon: "solution",
           path: "/list/table-list",
           component: <TableListPage />
+        },
+        {
+          name: "Big Data Table List",
+          icon: "cloud-server",
+          path: "/list/big-data-table-list",
+          component: <BigDataTableListPage />
         }
       ]
     }

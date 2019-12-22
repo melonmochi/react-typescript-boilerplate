@@ -1,8 +1,9 @@
 // TSLint config file
 {
-  "extends": ["tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint-react", "tslint-react-hooks", "tslint-config-prettier"],
   "rules": {
+    "jsx-boolean-value": false,
     "jsx-no-lambda": false,
-    "jsx-boolean-value": false
+    "react-hooks-nesting": "error"
   }
 }

@@ -443,7 +443,7 @@ export const ConnectedTableList: FC<ConnectedTableListProps> = props => {
 const EditableTableList = Form.create()(ConnectedTableList);
 export default EditableTableList;
 
-const useGetDepartmentsApi = () => {
+export const useGetDepartmentsApi = () => {
   const [data, setData] = useState<department[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);

@@ -1,0 +1,1 @@
+export { lexicographicalCompare } from "./lexicographicalCompare";
