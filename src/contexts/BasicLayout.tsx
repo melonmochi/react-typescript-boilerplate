@@ -1,4 +1,4 @@
-import React, { FC, createContext, useReducer } from "react";
+import React, { FC, createContext, useReducer, useRef } from "react";
 import { BasicLayout as BasicLayoutType } from "typings";
 import { basicLayoutReducers as reducers } from "@/reducers";
 
@@ -22,9 +22,10 @@ export const Context = createContext<BasicLayoutType.Interface>({
 });
 
 export const ContextProvider: FC = props => {
+  const globalRef = useRef<HTMLDivElement>(null);
   const [state, dispatch] = useReducer(reducers, initialState);
   return (
-    <Context.Provider value={{ state, dispatch }}>
+    <Context.Provider value={{ state, dispatch, globalRef }}>
       {props.children}
     </Context.Provider>
   );

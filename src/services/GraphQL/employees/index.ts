@@ -24,8 +24,8 @@ export interface EmployeesVars {
 }
 
 export const GET_EMPLOYEES = gql`
-  {
-    employees(first: 20) {
+  query Employees($first: Int!, $cursor: String) {
+    employees(first: $first, after: $cursor) {
       totalCount
       edges {
         node {
@@ -43,10 +43,8 @@ export const GET_EMPLOYEES = gql`
         }
       }
       pageInfo {
-        hasPreviousPage
-        hasNextPage
-        startCursor
         endCursor
+        hasNextPage
       }
     }
   }

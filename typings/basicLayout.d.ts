@@ -21,5 +21,6 @@ export module BasicLayout {
   interface Interface {
     state: State;
     dispatch: Dispatch;
+    globalRef?: React.MutableRefObject<HTMLDivElement>;
   }
 }

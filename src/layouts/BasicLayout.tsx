@@ -13,7 +13,7 @@ import { mapComponent } from "./utils";
 import { route } from "@/Routes";
 
 export const BasicLayout: FC = props => {
-  const { state, dispatch } = useContext(BasicLayoutContext);
+  const { state, dispatch, globalRef } = useContext(BasicLayoutContext);
   const { collapsed, settings } = state;
 
   const breadcrumbRender: BasicLayoutProps["breadcrumbRender"] = (
@@ -74,7 +74,7 @@ export const BasicLayout: FC = props => {
   );
 
   return (
-    <>
+    <div ref={globalRef}>
       <ProLayout
         breadcrumbRender={breadcrumbRender}
         collapsed={collapsed}
@@ -91,7 +91,7 @@ export const BasicLayout: FC = props => {
         {props.children}
       </ProLayout>
       <SettingDrawer settings={settings} onSettingChange={onSettingChange} />
-    </>
+    </div>
   );
 };
 

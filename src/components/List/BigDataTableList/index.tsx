@@ -1,9 +1,11 @@
-import React, { FC, useState } from "react";
-import { Table, Tag } from "antd";
+import React, { FC, useState, useContext } from "react";
+import { Table, Tag, message } from "antd";
 import { SortOrder, PaginationConfig } from "antd/lib/table";
+import InfiniteScroll from "react-infinite-scroller";
 import { useRequest, useGetEmployees } from "@/hooks/services";
 import { Employee } from "@/services/GraphQL";
 import { getColour } from "@/services/GraphQL/departments";
+import { BasicLayoutContext } from "@/contexts";
 
 const columns = [
   {
@@ -75,19 +77,18 @@ const columns = [
 ];
 
 interface BigDataTableListState {
+  hasMore: boolean;
   loading: boolean;
-  pagination: PaginationConfig;
+  pagination: PaginationConfig | false;
 }
 
 export const BigDataTableList: FC = () => {
   const [state, setState] = useState<BigDataTableListState>({
+    hasMore: true,
     loading: false,
-    pagination: {
-      showSizeChanger: true,
-      showQuickJumper: true
-    }
+    pagination: false
   });
-  const { data, loading: isLoading, error } = useGetEmployees();
+  const { data, loading: isLoading, error, loadMore } = useGetEmployees();
   useRequest({ error, setState, state, isLoading });
 
   const dataSource = data
@@ -96,9 +97,27 @@ export const BigDataTableList: FC = () => {
         .map(node => ({ ...node, key: node.empNo }))
     : [];
 
+  const handleInfiniteOnLoad = () => {
+    if (data.totalCount && data.totalCount === dataSource.length) {
+      message.warning("List loaded all");
+      setState({ ...state, hasMore: false });
+      return;
+    }
+    loadMore();
+  };
+
+  const { globalRef } = useContext(BasicLayoutContext);
+
   return (
-    <>
+    <InfiniteScroll
+      initialLoad={false}
+      pageStart={0}
+      loadMore={handleInfiniteOnLoad}
+      hasMore={!isLoading && state.hasMore}
+      useWindow={true}
+      getScrollParent={() => globalRef.current}
+    >
       <Table {...state} columns={columns} dataSource={dataSource} />
-    </>
+    </InfiniteScroll>
   );
 };

@@ -6,15 +6,13 @@ import { service } from "@/config";
 const uri = `${service.serviceUrl}/graphql`;
 
 export const client = new ApolloClient({
-  uri,
+  cache: new InMemoryCache(),
   fetch,
-  cache: new InMemoryCache()
+  uri
 });
 
 type PageInfo = {
   hasNextPage: boolean;
-  hasPreviousPage: boolean;
-  startCursor?: string;
   endCursor?: string;
 };
 
@@ -24,6 +22,8 @@ interface ConnectionEdge<T> {
 }
 
 export interface ConnectionType<T> {
+  [x: string]: any;
+  totalCount: number;
   pageInfo: PageInfo;
   edges: ConnectionEdge<T>[];
 }

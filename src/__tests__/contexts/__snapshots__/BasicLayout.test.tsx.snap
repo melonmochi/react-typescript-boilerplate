@@ -5,6 +5,9 @@ exports[`BasicLayoutContextProvider Snapshot 1`] = `
   value={
     Object {
       "dispatch": [Function],
+      "globalRef": Object {
+        "current": null,
+      },
       "state": Object {
         "collapsed": false,
         "settings": Object {
