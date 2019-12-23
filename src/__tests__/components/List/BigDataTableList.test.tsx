@@ -21,6 +21,7 @@ describe("BigDataTableList", () => {
       <BigDataTableList />
     </MockedProvider>
   );
+
   test("Snapshot", () => {
     expect(bigDataTableList).toMatchSnapshot();
   });

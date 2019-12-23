@@ -111,11 +111,10 @@ export const BigDataTableList: FC = () => {
   return (
     <InfiniteScroll
       initialLoad={false}
-      pageStart={0}
       loadMore={handleInfiniteOnLoad}
       hasMore={!isLoading && state.hasMore}
       useWindow={true}
-      getScrollParent={() => globalRef.current}
+      getScrollParent={() => globalRef && globalRef.current}
     >
       <Table {...state} columns={columns} dataSource={dataSource} />
     </InfiniteScroll>

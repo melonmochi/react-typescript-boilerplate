@@ -4,7 +4,7 @@ import { BigDataTableList } from "@/components/List";
 import { useHistory } from "react-router";
 import { Icon, Button } from "antd";
 
-import avatarSrc from "@/assets/jazz.png";
+import avatarSrc from "../../assets/jazz.png";
 
 export const BigDataTableListPage: FC<{}> = () => {
   let history = useHistory();

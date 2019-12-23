@@ -7,7 +7,7 @@ exports[`BasicLayout With Context Snapshot 1`] = `
 `;
 
 exports[`BasicLayout Without context Snapshot 1`] = `
-<Fragment>
+<div>
   <BasicLayout
     breadcrumbRender={[Function]}
     collapsed={false}
@@ -95,5 +95,5 @@ exports[`BasicLayout Without context Snapshot 1`] = `
       }
     }
   />
-</Fragment>
+</div>
 `;
