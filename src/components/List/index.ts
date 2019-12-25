@@ -1,2 +1,2 @@
-export { default as TableList } from "./TableList";
-export { BigDataTableList } from "./BigDataTableList";
+export { default as CustomTableList } from "./CustomTableList";
+export { TableList } from "./TableList";

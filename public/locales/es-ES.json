@@ -1,7 +1,65 @@
 {
+  "button": {
+    "backHome": "Volver a la página de inicio",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "no": "No",
+    "save": "Guardar",
+    "yes": "Sí"
+  },
+  "common": {
+    "help": "Ayuda"
+  },
+  "departments": {
+    "columns": {
+      "deptNo": {
+        "title": "Nº de departamento"
+      },
+      "name": {
+        "title": "Nombre"
+      },
+      "operation": {
+        "title": "Operación"
+      }
+    }
+  },
+  "employees": {
+    "columns": {
+      "EmpNo": {
+        "title": "Nº de empleado"
+      },
+      "department": {
+        "title": "Departamento"
+      },
+      "firstName": {
+        "title": "Nombre"
+      },
+      "lastName": {
+        "title": "Apellido"
+      },
+      "gender": {
+        "title": "Género"
+      },
+      "birthDate": {
+        "title": "Fecha de nacimiento"
+      },
+      "hireDate": {
+        "title": "Fecha de contratación"
+      },
+      "isManager": {
+        "title": "Gerente"
+      },
+      "operation": {
+        "title": "Operación"
+      }
+    }
+  },
   "global": {
     "title": "Global",
-    "404": "404"
+    "404": {
+      "title": "404",
+      "subTitle": "Lo sentimos, la página que visitaste no existe."
+    }
   },
   "home": "Página de inicio",
   "list": {
@@ -9,5 +67,51 @@
     "listTable": "Tabla de lista",
     "customListTable": "Tabla de lista personalizada"
   },
-  "welcome": "Bienvenido"
+  "message": {
+    "confim": "Seguro para {{action}}?"
+  },
+  "mock": {
+    "footer": "Aquí está el pie de página",
+    "operation": "Operación {{number}}",
+    "title": "Aquí está el Título"
+  },
+  "placeholder": {
+    "search": "Buscar"
+  },
+  "tableConfig": {
+    "bordered": "Bordeado",
+    "checkbox": "Checkbox",
+    "columnHeader": "Encabezado de la columna",
+    "ellipsis": "Elipsis",
+    "expandable": "Ampliable",
+    "fixedHeader": "Cabecera fija",
+    "footer": "Pie de página",
+    "hasData": "Con datos",
+    "loading": "Cargando",
+    "pagination": {
+      "both": "Ambos",
+      "bottom": "Abajo",
+      "none": "Ninguno",
+      "title": "Paginación",
+      "top": "Arriba"
+    },
+    "size": {
+      "default": "Por defecto",
+      "middle": "Medio",
+      "small": "Pequeño",
+      "title": "Tamaño"
+    },
+    "tableLayout": {
+      "fixed": "Fijo",
+      "title": "Diseño de tabla",
+      "unset": "Desarmado"
+    },
+    "title": "Título"
+  },
+  "welcome": {
+    "title": "Bienvenido",
+    "message": "React TypeScript Boilerplate ya está disponible, haga clic en el icono de github en el pie de página para ver el código fuente.",
+    "messageDesc": "Cree rápidamente el desarrollo de páginas estándar basado en TypeScript.",
+    "messageObs": "¿Quieres agregar más páginas? Por favor espere la publicación del manual."
+  }
 }

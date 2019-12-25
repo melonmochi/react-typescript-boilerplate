@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BigDataTableList Snapshot 1`] = `
+exports[`TableList Snapshot 1`] = `
 <MockedProvider
   addTypename={false}
   mocks={

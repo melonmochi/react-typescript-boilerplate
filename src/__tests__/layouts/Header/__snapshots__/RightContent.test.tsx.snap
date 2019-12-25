@@ -12,7 +12,7 @@ exports[`RightContent Alternative props Snapshot 1`] = `
     onPressEnter={[Function]}
     onSearch={[Function]}
     onVisibleChange={[Function]}
-    placeholder="Search"
+    placeholder="placeholder.search"
   />
   <Tooltip
     arrowPointAtCenter={false}
@@ -20,7 +20,7 @@ exports[`RightContent Alternative props Snapshot 1`] = `
     mouseEnterDelay={0.1}
     mouseLeaveDelay={0.1}
     placement="top"
-    title="Help"
+    title="common.help"
     transitionName="zoom-big-fast"
   >
     <a
@@ -46,7 +46,7 @@ exports[`RightContent Default props Snapshot 1`] = `
     onPressEnter={[Function]}
     onSearch={[Function]}
     onVisibleChange={[Function]}
-    placeholder="Search"
+    placeholder="placeholder.search"
   />
   <Tooltip
     arrowPointAtCenter={false}
@@ -54,7 +54,7 @@ exports[`RightContent Default props Snapshot 1`] = `
     mouseEnterDelay={0.1}
     mouseLeaveDelay={0.1}
     placement="top"
-    title="Help"
+    title="common.help"
     transitionName="zoom-big-fast"
   >
     <a

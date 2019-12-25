@@ -1,8 +1,7 @@
 import * as React from "react";
 import { mount } from "enzyme";
-import { BigDataTableList } from "@/components/List";
 import { MockedProvider } from "@apollo/react-testing";
-
+import { TableListPage } from "@/pages";
 import { GET_EMPLOYEES } from "@/services/GraphQL";
 const mocks = [
   {
@@ -15,14 +14,19 @@ const mocks = [
   }
 ];
 
-describe("BigDataTableList", () => {
-  const bigDataTableList = mount(
+jest.mock("react-router", () => ({
+  useHistory: () => ({
+    push: jest.fn()
+  })
+}));
+
+describe("TableListPage", () => {
+  const tableListPage = mount(
     <MockedProvider mocks={mocks} addTypename={false}>
-      <BigDataTableList />
+      <TableListPage />
     </MockedProvider>
   );
-
   test("Snapshot", () => {
-    expect(bigDataTableList).toMatchSnapshot();
+    expect(tableListPage).toMatchSnapshot();
   });
 });

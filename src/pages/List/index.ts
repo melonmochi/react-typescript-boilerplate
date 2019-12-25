@@ -1,2 +1,2 @@
-export { default as TableListPage } from "./TableListPage";
-export { BigDataTableListPage } from "./BigDataTableListPage";
+export { CustomTableListPage } from "./CustomTableListPage";
+export { TableListPage } from "./TableListPage";

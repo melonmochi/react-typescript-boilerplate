@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Icon, Tooltip } from "antd";
 import { Search } from "@/components/Input";
 import { LanguageDropdown } from ".";
@@ -14,6 +15,7 @@ export interface GlobalHeaderRightProps extends ConnectProps {
 
 const RightContent: React.SFC<GlobalHeaderRightProps> = props => {
   const { theme, layout } = props;
+  const { t } = useTranslation();
   let className = styles.right;
 
   if (theme === "dark" && layout === "topmenu") {
@@ -38,9 +40,9 @@ const RightContent: React.SFC<GlobalHeaderRightProps> = props => {
         onPressEnter={value => {
           console.log("enter", value);
         }}
-        placeholder="Search"
+        placeholder={t("placeholder.search")}
       />
-      <Tooltip title="Help">
+      <Tooltip title={t("common.help")}>
         <a
           target="_blank"
           href="https://github.com/melonmochi/react-typescript-boilerplate"

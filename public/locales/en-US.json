@@ -1,7 +1,65 @@
 {
+  "button": {
+    "backHome": "Back Home",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "no": "No",
+    "save": "Save",
+    "yes": "Yes"
+  },
+  "common": {
+    "help": "Help"
+  },
+  "departments": {
+    "columns": {
+      "deptNo": {
+        "title": "Department No"
+      },
+      "name": {
+        "title": "Name"
+      },
+      "operation": {
+        "title": "Operation"
+      }
+    }
+  },
+  "employees": {
+    "columns": {
+      "EmpNo": {
+        "title": "Employee No"
+      },
+      "department": {
+        "title": "Department"
+      },
+      "firstName": {
+        "title": "First Name"
+      },
+      "lastName": {
+        "title": "Last Name"
+      },
+      "gender": {
+        "title": "Gender"
+      },
+      "birthDate": {
+        "title": "Birth Date"
+      },
+      "hireDate": {
+        "title": "Hire Date"
+      },
+      "isManager": {
+        "title": "Manager"
+      },
+      "operation": {
+        "title": "Operation"
+      }
+    }
+  },
   "global": {
     "title": "Global",
-    "404": "404"
+    "404": {
+      "title": "404",
+      "subTitle": "Sorry, the page you visited does not exist."
+    }
   },
   "home": "Home",
   "list": {
@@ -9,5 +67,51 @@
     "listTable": "List Table",
     "customListTable": "Custom List Table"
   },
-  "welcome": "Welcome"
+  "message": {
+    "confim": "Sure to {{action}}?"
+  },
+  "mock": {
+    "footer": "Here is Footer",
+    "operation": "Operation {{number}}",
+    "title": "Here is Title"
+  },
+  "placeholder": {
+    "search": "Search"
+  },
+  "tableConfig": {
+    "bordered": "Bordered",
+    "checkbox": "Checkbox",
+    "columnHeader": "Column Header",
+    "ellipsis": "Ellipsis",
+    "expandable": "Expandable",
+    "fixedHeader": "Fixed Header",
+    "footer": "Footer",
+    "hasData": "Has Data",
+    "loading": "Loading",
+    "pagination": {
+      "both": "Both",
+      "bottom": "Bottom",
+      "none": "None",
+      "title": "Pagination",
+      "top": "Top"
+    },
+    "size": {
+      "default": "Default",
+      "middle": "Middle",
+      "small": "Small",
+      "title": "Size"
+    },
+    "tableLayout": {
+      "fixed": "Fixed",
+      "title": "Table Layout",
+      "unset": "Unset"
+    },
+    "title": "Title"
+  },
+  "welcome": {
+    "title": "Welcome",
+    "message": "React TypeScript Boilerplate ya está disponible, haga clic en el icono de github en el pie de página para ver el código fuente.",
+    "messageDesc": "Quickly build standard pages development based on TypeScript.",
+    "messageObs": "Want to add more pages? Please wait for publication of handbook."
+  }
 }

@@ -1,7 +1,65 @@
 {
+  "button": {
+    "backHome": "返回主页",
+    "cancel": "取消",
+    "edit": "修改",
+    "no": "不",
+    "save": "保存",
+    "yes": "是的"
+  },
+  "common": {
+    "help": "帮助"
+  },
+  "departments": {
+    "columns": {
+      "deptNo": {
+        "title": "部门编号"
+      },
+      "name": {
+        "title": "名称"
+      },
+      "operation": {
+        "title": "操作"
+      }
+    }
+  },
+  "employees": {
+    "columns": {
+      "EmpNo": {
+        "title": "员工编号"
+      },
+      "department": {
+        "title": "部门"
+      },
+      "firstName": {
+        "title": "名字"
+      },
+      "lastName": {
+        "title": "姓"
+      },
+      "gender": {
+        "title": "性别"
+      },
+      "birthDate": {
+        "title": "生日"
+      },
+      "hireDate": {
+        "title": "聘用日期"
+      },
+      "isManager": {
+        "title": "经理"
+      },
+      "operation": {
+        "title": "操作"
+      }
+    }
+  },
   "global": {
     "title": "全局",
-    "404": "404"
+    "404": {
+      "title": "404",
+      "subTitle": "抱歉，您访问的页面不存在。"
+    }
   },
   "home": "首页",
   "list": {
@@ -9,5 +67,51 @@
     "listTable": "清单表",
     "customListTable": "自定义列表"
   },
-  "welcome": "欢迎"
+  "message": {
+    "confim": "确定要{{action}}吗?"
+  },
+  "mock": {
+    "footer": "这里是页脚",
+    "operation": "操作 {{number}}",
+    "title": "这里是标题"
+  },
+  "placeholder": {
+    "search": "搜索"
+  },
+  "tableConfig": {
+    "bordered": "边框",
+    "checkbox": "复选框",
+    "columnHeader": "列标题",
+    "ellipsis": "省略",
+    "expandable": "扩展",
+    "fixedHeader": "固定标题",
+    "footer": "页脚",
+    "hasData": "有数据",
+    "loading": "载入中",
+    "pagination": {
+      "both": "上下",
+      "bottom": "下方",
+      "none": "无",
+      "title": "分页",
+      "top": "上方"
+    },
+    "size": {
+      "default": "默认",
+      "middle": "中",
+      "small": "小",
+      "title": "尺寸"
+    },
+    "tableLayout": {
+      "fixed": "固定",
+      "title": "表格布局",
+      "unset": "未设定"
+    },
+    "title": "标题"
+  },
+  "welcome": {
+    "title": "欢迎",
+    "message": "React TypeScript Boilerplate现已可用，单击页脚中的github图标以查看源代码。",
+    "messageDesc": "基于TypeScript快速构建标准页面开发。",
+    "messageObs": "您要添加更多页面吗？ 请等待手册的发布。"
+  }
 }

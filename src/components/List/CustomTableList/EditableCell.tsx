@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import { InputType } from "typings";
-import { EditableContext } from "@/components/List/TableList";
+import { EditableContext } from "@/components/List/CustomTableList";
 import { Form, InputNumber, Input } from "antd";
 
 export interface EditableCellProps {
