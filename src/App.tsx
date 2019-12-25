@@ -8,6 +8,7 @@ import {
 import { ApolloProvider } from "@apollo/react-hooks";
 import { client } from "@/services/GraphQL";
 import { BasicLayout } from "@/layouts";
+import "@/config/i18n";
 
 const App: FunctionComponent = () => {
   return (

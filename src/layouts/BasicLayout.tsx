@@ -9,19 +9,21 @@ import { BasicLayoutContext, BasicLayoutContextProvider } from "@/contexts";
 import { Footer } from ".";
 import { Link, RouteProps } from "react-router-dom";
 import { RightContent } from "./Header";
-import { mapComponent } from "./utils";
+import { mapComponent, translateRoute } from "./utils";
 import { route } from "@/Routes";
+import { useTranslation } from "react-i18next";
 
 export const BasicLayout: FC = props => {
   const { state, dispatch, globalRef } = useContext(BasicLayoutContext);
   const { collapsed, settings } = state;
+  const { t } = useTranslation();
 
   const breadcrumbRender: BasicLayoutProps["breadcrumbRender"] = (
     routers = []
   ) => [
     {
       path: "/",
-      breadcrumbName: "Home"
+      breadcrumbName: t("home")
     },
     ...routers
   ];
@@ -85,7 +87,7 @@ export const BasicLayout: FC = props => {
         menuHeaderRender={menuHeaderRender}
         onCollapse={handleMenuCollapse}
         rightContentRender={rightContentRender}
-        route={route}
+        route={translateRoute(t, route)}
         {...settings}
       >
         {props.children}

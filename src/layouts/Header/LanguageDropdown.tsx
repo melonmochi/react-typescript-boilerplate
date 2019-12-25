@@ -11,7 +11,7 @@ interface LanguageDropdownProps {
 const LanguageDropdown: React.FC<LanguageDropdownProps> = props => {
   const { className } = props;
   return (
-    <Dropdown overlay={Language} placement="bottomRight">
+    <Dropdown overlay={() => <Language />} placement="bottomRight">
       <span className={classNames(styles.dropDown, className)}>
         <Icon type="global" title={"Languages"} />
       </span>

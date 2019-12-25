@@ -1,0 +1,13 @@
+{
+  "global": {
+    "title": "全局",
+    "404": "404"
+  },
+  "home": "首页",
+  "list": {
+    "title": "列表",
+    "listTable": "清单表",
+    "customListTable": "自定义列表"
+  },
+  "welcome": "欢迎"
+}

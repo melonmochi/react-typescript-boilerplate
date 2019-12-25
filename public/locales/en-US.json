@@ -1,0 +1,13 @@
+{
+  "global": {
+    "title": "Global",
+    "404": "404"
+  },
+  "home": "Home",
+  "list": {
+    "title": "List",
+    "listTable": "List Table",
+    "customListTable": "Custom List Table"
+  },
+  "welcome": "Welcome"
+}

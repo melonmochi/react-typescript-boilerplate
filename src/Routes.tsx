@@ -12,18 +12,18 @@ export const route: Route = {
   routes: [
     {
       path: "/welcome",
-      name: "Welcome",
+      nameKey: "welcome",
       icon: "smile",
       component: <Welcome />
     },
     {
       path: "/global",
-      name: "Global",
+      nameKey: "global.title",
       icon: "global",
       children: [
         {
           path: "/global/404",
-          name: "404",
+          nameKey: "global.404",
           icon: "warning",
           component: <NoFoundPage />
         }
@@ -31,17 +31,17 @@ export const route: Route = {
     },
     {
       path: "/list",
-      name: "List",
+      nameKey: "list.title",
       icon: "unordered-list",
       children: [
         {
-          name: "Table List",
+          nameKey: "list.listTable",
           icon: "solution",
           path: "/list/table-list",
           component: <TableListPage />
         },
         {
-          name: "Big Data Table List",
+          nameKey: "list.customListTable",
           icon: "cloud-server",
           path: "/list/big-data-table-list",
           component: <BigDataTableListPage />

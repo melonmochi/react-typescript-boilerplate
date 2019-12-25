@@ -3,6 +3,12 @@
 exports[`Search Snapshot 1`] = `
 <Menu
   className="menu"
+  onClick={[Function]}
+  selectedKeys={
+    Array [
+      undefined,
+    ]
+  }
 >
   <MenuItem
     key="en-US"
